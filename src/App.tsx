@@ -39,11 +39,10 @@ export default function App() {
     () => localStorage.getItem("carthos_user_name") || "",
   );
   const [theme, setTheme] = useState<"light" | "dark">(
-    () =>
-      (localStorage.getItem("carthos_theme") as "light" | "dark") || "light",
+    () => (localStorage.getItem("carthos_theme") as "light" | "dark") || "dark",
   );
   const [language, setLanguage] = useState<"en" | "es">(
-    () => (localStorage.getItem("carthos_language") as "en" | "es") || "es",
+    () => (localStorage.getItem("carthos_language") as "en" | "es") || "en",
   );
 
   // Update localStorage when language changes
