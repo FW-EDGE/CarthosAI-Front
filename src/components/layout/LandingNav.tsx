@@ -77,14 +77,10 @@ export const LandingNav = ({
           justifySelf: "center",
         }}
       >
-        {["Methodology", "Granular Tracking", "Neural Atlas", "APIs"].map((item) => (
+        {["Methodology", "Granular Tracking", "Neural Atlas"].map((item) => (
           <button
             key={item}
             onClick={() => {
-              if (item === "APIs") {
-                onApiClick();
-                return;
-              }
               const id = item.toLowerCase().replace(/\s+/g, "-");
               document
                 .getElementById(id)
@@ -108,9 +104,7 @@ export const LandingNav = ({
               ? t.nav_methodology
               : item === "Granular Tracking"
                 ? t.nav_tracking
-                : item === "Neural Atlas"
-                  ? t.nav_atlas
-                  : t.nav_apis}
+                : t.nav_atlas}
           </button>
         ))}
       </nav>

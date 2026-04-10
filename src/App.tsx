@@ -1,15 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Loader2, Plus } from "lucide-react";
-import {
-  LearningPath,
-  OnboardingData,
-} from "./types";
-import { 
-  authService, 
-  learningService, 
-  mapService 
-} from "./services/api";
+import { LearningPath, OnboardingData } from "./types";
+import { authService, learningService, mapService } from "./services/api";
 import { FuturisticMap } from "./components/FuturisticMap";
 import { Landing } from "./components/Landing";
 import { Auth } from "./components/Auth";
@@ -37,14 +30,21 @@ export default function App() {
     return Date.now() - parseInt(ts, 10) < SESSION_TTL;
   };
 
-  const [screen, setScreen] = useState<"landing" | "auth" | "onboarding" | "main">(
-    () => (isSessionValid() ? "main" : "landing")
-  );
+  const [screen, setScreen] = useState<
+    "landing" | "auth" | "onboarding" | "main"
+  >(() => (isSessionValid() ? "main" : "landing"));
   const [authMode, setAuthMode] = useState<"login" | "register">("register");
   const [activeTab, setActiveTab] = useState("progress");
-  const [userName, setUserName] = useState(() => localStorage.getItem("carthos_user_name") || "");
-  const [theme, setTheme] = useState<"light" | "dark">(() => (localStorage.getItem("carthos_theme") as "light" | "dark") || "light");
-  const [language, setLanguage] = useState<"en" | "es">(() => (localStorage.getItem("carthos_language") as "en" | "es") || "es");
+  const [userName, setUserName] = useState(
+    () => localStorage.getItem("carthos_user_name") || "",
+  );
+  const [theme, setTheme] = useState<"light" | "dark">(
+    () =>
+      (localStorage.getItem("carthos_theme") as "light" | "dark") || "light",
+  );
+  const [language, setLanguage] = useState<"en" | "es">(
+    () => (localStorage.getItem("carthos_language") as "en" | "es") || "es",
+  );
 
   // Update localStorage when language changes
   useEffect(() => {
@@ -55,7 +55,7 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem("carthos_theme", theme);
     // Also apply to document for global variables if needed
-    document.documentElement.classList.toggle('dark', theme === 'dark');
+    document.documentElement.classList.toggle("dark", theme === "dark");
   }, [theme]);
 
   // ── Multi-map state ──
@@ -117,7 +117,7 @@ export default function App() {
       // 2. Persist it to DB
       const savedPath = await mapService.save(generatedPath);
       // 3. Update local state with the DB version (has real _id)
-      setLearningPaths(prev => [...prev, savedPath]);
+      setLearningPaths((prev) => [...prev, savedPath]);
       setActivePath(savedPath);
       setScreen("main");
       setActiveTab("map");
@@ -141,15 +141,17 @@ export default function App() {
     const currentPath = activePathRef.current;
     if (!currentPath) return;
 
-    const updatedNodes = currentPath.nodes.map(n => 
-      n.id === nodeId ? { ...n, ...updates } : n
+    const updatedNodes = currentPath.nodes.map((n) =>
+      n.id === nodeId ? { ...n, ...updates } : n,
     );
-    
+
     const newPath = { ...currentPath, nodes: updatedNodes };
 
     // 1. Optimistic local update (INSTANT)
     setActivePath(newPath);
-    setLearningPaths(prev => prev.map(p => p.id === newPath.id ? newPath : p));
+    setLearningPaths((prev) =>
+      prev.map((p) => (p.id === newPath.id ? newPath : p)),
+    );
 
     // 2. Debounced server sync
     savePathDebounced.current = setTimeout(async () => {
@@ -158,7 +160,7 @@ export default function App() {
       } catch (error) {
         console.error("Error updating node:", error);
       }
-    }, 500); 
+    }, 500);
   };
 
   const handleDragEnd = async (nodes: any[]) => {
@@ -166,7 +168,9 @@ export default function App() {
     if (!currentPath) return;
     const newPath = { ...currentPath, nodes };
     setActivePath(newPath);
-    setLearningPaths(prev => prev.map(p => p.id === newPath.id ? newPath : p));
+    setLearningPaths((prev) =>
+      prev.map((p) => (p.id === newPath.id ? newPath : p)),
+    );
 
     if (savePathDebounced.current) clearTimeout(savePathDebounced.current);
     savePathDebounced.current = setTimeout(async () => {
@@ -175,14 +179,20 @@ export default function App() {
       } catch (error) {
         console.error("Error updating node positions:", error);
       }
-    }, 1000); 
+    }, 1000);
   };
 
   if (screen === "landing") {
     return (
       <Landing
-        onStart={() => { setAuthMode("register"); setScreen("auth"); }}
-        onSignIn={() => { setAuthMode("login"); setScreen("auth"); }}
+        onStart={() => {
+          setAuthMode("register");
+          setScreen("auth");
+        }}
+        onSignIn={() => {
+          setAuthMode("login");
+          setScreen("auth");
+        }}
         onApiClick={() => {}}
         theme={theme}
         setTheme={setTheme}
@@ -193,7 +203,13 @@ export default function App() {
   }
 
   if (screen === "auth") {
-    return <Auth initialMode={authMode} onAuthSuccess={handleAuthSuccess} language={language} />;
+    return (
+      <Auth
+        initialMode={authMode}
+        onAuthSuccess={handleAuthSuccess}
+        language={language}
+      />
+    );
   }
 
   if (screen === "onboarding") {
@@ -206,8 +222,25 @@ export default function App() {
   }
 
   return (
-    <div style={{ minHeight: "100vh", background: theme === 'dark' ? "#0f1416" : "var(--surface)", display: "flex", flexDirection: "column", transition: "background 0.3s ease" }}>
-      <TopNav activeTab={activeTab} setActiveTab={setActiveTab} onLogout={handleLogout} userName={userName} theme={theme} setTheme={setTheme} language={language} setLanguage={setLanguage} />
+    <div
+      style={{
+        minHeight: "100vh",
+        background: theme === "dark" ? "#0f1416" : "var(--surface)",
+        display: "flex",
+        flexDirection: "column",
+        transition: "background 0.3s ease",
+      }}
+    >
+      <TopNav
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+        onLogout={handleLogout}
+        userName={userName}
+        theme={theme}
+        setTheme={setTheme}
+        language={language}
+        setLanguage={setLanguage}
+      />
 
       <main style={{ flex: 1, overflow: "hidden auto" }}>
         <AnimatePresence mode="wait">
@@ -247,10 +280,14 @@ export default function App() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               style={{
-                display: "flex", alignItems: "center", justifyContent: "center",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
                 height: "calc(100vh - 80px)",
-                fontFamily: "var(--font-display)", fontWeight: 800,
-                fontSize: "3rem", letterSpacing: "-0.03em",
+                fontFamily: "var(--font-display)",
+                fontWeight: 800,
+                fontSize: "3rem",
+                letterSpacing: "-0.03em",
                 color: "var(--surface-container-high)",
               }}
             >
