@@ -64,6 +64,7 @@ interface FuturisticMapProps {
   onNodeUpdate?: (nodeId: string, updates: any) => void;
   onDragEnd?: (nodes: LearningNode[]) => void;
   language?: Language;
+  disableZoom?: boolean;
 }
 
 export const FuturisticMap = ({
@@ -73,6 +74,7 @@ export const FuturisticMap = ({
   onNodeUpdate,
   onDragEnd,
   language = "es",
+  disableZoom = false,
 }: FuturisticMapProps) => {
   const t = translations[language];
   const completedNodes = path.nodes.filter(
@@ -645,16 +647,16 @@ export const FuturisticMap = ({
           r = "16";
           g_ = "185";
           b = "129"; // #10b981 emerald
-          lineW = 4;
-          headR = 4.5;
-          glowR = 10;
-          glowStr = 18;
+          lineW = 3;
+          headR = 3.5;
+          glowR = 8;
+          glowStr = 14;
         } else if (p.type === "in-progress") {
           r = "245";
           g_ = "158";
           b = "11"; // #f59e0b amber
-          lineW = 3;
-          headR = 3.5;
+          lineW = 2.5;
+          headR = 3;
           glowR = 8;
           glowStr = 14;
         } else {
@@ -762,15 +764,17 @@ export const FuturisticMap = ({
     }
 
     // Zoom behavior
-    const zoom = d3
-      .zoom<SVGSVGElement, unknown>()
-      .scaleExtent([0.5, 2])
-      .on("zoom", (event) => {
-        currentTransform = event.transform;
-        transformRef.current = event.transform;
-        g.attr("transform", event.transform);
-      });
-    svg.call(zoom);
+    if (!disableZoom) {
+      const zoom = d3
+        .zoom<SVGSVGElement, unknown>()
+        .scaleExtent([0.5, 2])
+        .on("zoom", (event) => {
+          currentTransform = event.transform;
+          transformRef.current = event.transform;
+          g.attr("transform", event.transform);
+        });
+      svg.call(zoom);
+    }
 
     return () => {
       simulation.stop();

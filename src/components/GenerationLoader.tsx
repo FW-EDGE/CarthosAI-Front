@@ -134,7 +134,7 @@ export const GenerationLoader = ({ language = "es" }: { language?: Language }) =
             marginTop: "0.5rem",
             fontWeight: 700
           }}>
-            Carthos Engine
+            CarthosAI Engine
           </span>
         </div>
       </div>

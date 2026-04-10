@@ -5,7 +5,11 @@ import {
   LearningPath,
   OnboardingData,
 } from "./types";
-import { generateLearningPath } from "./services/chatGptService";
+import { 
+  authService, 
+  learningService, 
+  mapService 
+} from "./services/api";
 import { FuturisticMap } from "./components/FuturisticMap";
 import { Landing } from "./components/Landing";
 import { Auth } from "./components/Auth";
@@ -13,7 +17,6 @@ import { TopNav } from "./components/TopNav";
 import { Onboarding } from "./components/Onboarding";
 import { StellarProgress } from "./components/StellarProgress";
 import { MapSelectorBar } from "./components/MapSelectorBar";
-import { fetchMaps, saveMap, updateMap } from "./services/planificacionService";
 import { GenerationLoader } from "./components/GenerationLoader";
 
 // Sections
@@ -65,7 +68,7 @@ export default function App() {
   const loadMapsFromDB = async () => {
     setMapsLoading(true);
     try {
-      const paths = await fetchMaps();
+      const paths = await mapService.fetchAll();
       setLearningPaths(paths);
       if (paths.length > 0) setActivePath(paths[0]);
     } catch (err) {
@@ -110,9 +113,9 @@ export default function App() {
     try {
       setIsGeneratingMap(true);
       // 1. Generate the map from AI
-      const generatedPath = await generateLearningPath(data, language);
+      const generatedPath = await learningService.generatePath(data, language);
       // 2. Persist it to DB
-      const savedPath = await saveMap(generatedPath);
+      const savedPath = await mapService.save(generatedPath);
       // 3. Update local state with the DB version (has real _id)
       setLearningPaths(prev => [...prev, savedPath]);
       setActivePath(savedPath);
@@ -149,10 +152,9 @@ export default function App() {
     setLearningPaths(prev => prev.map(p => p.id === newPath.id ? newPath : p));
 
     // 2. Debounced server sync
-    if (savePathDebounced.current) clearTimeout(savePathDebounced.current);
     savePathDebounced.current = setTimeout(async () => {
       try {
-        await updateMap(newPath);
+        await mapService.update(newPath);
       } catch (error) {
         console.error("Error updating node:", error);
       }
@@ -169,7 +171,7 @@ export default function App() {
     if (savePathDebounced.current) clearTimeout(savePathDebounced.current);
     savePathDebounced.current = setTimeout(async () => {
       try {
-        await updateMap(newPath);
+        await mapService.update(newPath);
       } catch (error) {
         console.error("Error updating node positions:", error);
       }
@@ -181,6 +183,7 @@ export default function App() {
       <Landing
         onStart={() => { setAuthMode("register"); setScreen("auth"); }}
         onSignIn={() => { setAuthMode("login"); setScreen("auth"); }}
+        onApiClick={() => {}}
         theme={theme}
         setTheme={setTheme}
         language={language}

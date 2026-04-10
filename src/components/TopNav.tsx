@@ -100,7 +100,7 @@ export const TopNav = ({
               }}
               onClick={() => setActiveTab("progress")}
             >
-              Carthos
+              CarthosAI
             </h1>
           </div>
 

@@ -9,6 +9,9 @@ import {
   AlertCircle,
 } from "lucide-react";
 import { translations, Language } from "../translations";
+import { Button } from "./ui/Button";
+import { authService } from "../services/api";
+
 export const Auth = ({
   onAuthSuccess,
   initialMode = "register",
@@ -32,27 +35,9 @@ export const Auth = ({
     setLoading(true);
 
     try {
-      const endpoint = isLogin ? "login" : "register";
-      const payload = isLogin
-        ? { email, password }
-        : { nombre: name, email, password };
-
-      const res = await fetch(
-        `http://localhost:4040/api/userAuth/${endpoint}`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        },
-      );
-
-      const data = await res.json();
-
-      if (!res.ok || !data.ok) {
-        throw new Error(
-          data.msg || t.auth_failed,
-        );
-      }
+      const data = isLogin
+        ? await authService.login({ email, password })
+        : await authService.register({ nombre: name, email, password });
 
       // Store JWT token locally
       localStorage.setItem("carthos_token", data.token);
@@ -329,26 +314,16 @@ export const Auth = ({
             </div>
           </div>
 
-          <button
+          <Button
             type="submit"
-            disabled={loading}
-            className="btn-primary"
-            style={{
-              marginTop: "0.5rem",
-              borderRadius: "12px",
-              width: "100%",
-              opacity: loading ? 0.7 : 1,
-            }}
+            isLoading={loading}
+            variant="primary"
+            className="w-full mt-2"
+            style={{ borderRadius: "12px" }}
+            rightIcon={<ArrowRight size={16} />}
           >
-            {loading ? (
-              <Loader2 size={16} className="animate-spin" />
-            ) : isLogin ? (
-              t.auth_authenticate
-            ) : (
-              t.auth_establish_link
-            )}
-            {!loading && <ArrowRight size={16} />}
-          </button>
+            {isLogin ? t.auth_authenticate : t.auth_establish_link}
+          </Button>
         </form>
 
         <div style={{ marginTop: "2rem", textAlign: "center" }}>
@@ -361,26 +336,19 @@ export const Auth = ({
           >
             {isLogin ? t.auth_new_network : t.auth_already_explorer}
           </span>
-          <button
-            type="button"
+          <Button
+            variant="ghost"
+            size="sm"
             onClick={() => {
               setIsLogin(!isLogin);
               setErrorMsg("");
             }}
             disabled={loading}
-            style={{
-              background: "none",
-              border: "none",
-              fontWeight: 700,
-              color: "var(--primary-fixed)",
-              fontFamily: "var(--font-sans)",
-              fontSize: "0.85rem",
-              cursor: "pointer",
-              marginLeft: 6,
-            }}
+            style={{ fontWeight: 800, color: "var(--primary-fixed)" }}
+            className="ml-1"
           >
             {isLogin ? t.auth_register_now : t.auth_signin_here}
-          </button>
+          </Button>
         </div>
       </motion.div>
     </div>

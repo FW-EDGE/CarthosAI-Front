@@ -19,7 +19,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { LearningNode } from "../types";
-import { generateNodePlan } from "../services/chatGptService";
+import { learningService } from "../services/api";
 import { translations, Language } from "../translations";
 
 // Helper is now inside component for better HMR consistency
@@ -86,7 +86,7 @@ export const NodeDetailPanel = ({
     setIsLoadingPlan(true);
     try {
       // POST para generar el plan de estudio
-      const plan = await generateNodePlan(selectedNode, mapId, language);
+      const plan = await learningService.generateNodePlan(selectedNode, mapId, language);
       setStudyPlan(plan);
 
       // PUT (onUpdate) una vez completado, actualizando TODO el estado de golpe
