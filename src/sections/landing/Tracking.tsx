@@ -13,13 +13,13 @@ export const Tracking = ({ isDark, translations: t }: TrackingProps) => {
   return (
     <section
       id="granular-tracking"
-      className="relative z-10 max-w-7xl mx-auto px-6 py-32 border-t"
-      style={{ borderColor: "var(--surface-container-high)" }}
+      className="relative z-10 max-w-7xl mx-auto px-6 py-32"
     >
       <div
+        className="responsive-grid-2"
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+          gridTemplateColumns: "1fr 1fr",
           gap: "6rem",
           alignItems: "start",
         }}
@@ -49,46 +49,9 @@ export const Tracking = ({ isDark, translations: t }: TrackingProps) => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <div
-              style={{
-                display: "inline-block",
-                padding: "0.4rem 1rem",
-                borderRadius: "100px",
-                background: "rgba(0, 100, 123, 0.1)",
-                color: "var(--primary)",
-                fontSize: "0.75rem",
-                fontWeight: 600,
-                textTransform: "uppercase",
-                letterSpacing: "0.1em",
-                marginBottom: "1.5rem",
-              }}
-            >
-              {t.nav_tracking}
-            </div>
-            <h2
-              style={{
-                fontFamily: "var(--font-display)",
-                fontWeight: 600,
-                fontSize: "clamp(2.2rem, 4vw, 3.2rem)",
-                color: "var(--on-surface)",
-                letterSpacing: "-0.04em",
-                lineHeight: 1.1,
-                marginBottom: "1.5rem",
-              }}
-            >
-              {t.tracking_title}
-            </h2>
-            <p
-              style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "1.2rem",
-                color: "var(--on-surface-var)",
-                lineHeight: 1.5,
-                marginBottom: "3rem",
-              }}
-            >
-              {t.tracking_subtitle}
-            </p>
+            <div className="section-badge">{t.nav_tracking}</div>
+            <h2 className="section-title">{t.tracking_title}</h2>
+            <p className="section-description">{t.tracking_subtitle}</p>
 
             <div
               style={{
@@ -116,11 +79,11 @@ export const Tracking = ({ isDark, translations: t }: TrackingProps) => {
               ].map((f, i) => (
                 <div key={i} style={{ display: "flex", gap: "1.5rem" }}>
                   <div
+                    className="glass-panel"
                     style={{
-                      width: 44,
-                      height: 44,
+                      width: 48,
+                      height: 48,
                       borderRadius: "12px",
-                      background: "var(--surface-container-high)",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",

@@ -19,14 +19,11 @@ export const Atlas = ({
   return (
     <section
       id="neural-atlas"
-      className="relative overflow-hidden pt-32 pb-48 border-t"
-      style={{
-        borderColor: "var(--surface-container-high)",
-        background: isDark ? "rgba(0,0,0,0.1)" : "rgba(0,100,123,0.01)",
-      }}
+      className="relative z-10 max-w-7xl mx-auto px-6 py-32"
     >
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div
+          className="responsive-grid-2"
           style={{
             display: "grid",
             gridTemplateColumns: "1fr 1.2fr",
@@ -41,45 +38,16 @@ export const Atlas = ({
               viewport={{ once: true }}
             >
               <div
+                className="section-badge"
                 style={{
-                  display: "inline-block",
-                  padding: "0.4rem 1rem",
-                  borderRadius: "100px",
-                  background: "rgba(0, 100, 123, 0.1)",
-                  color: "var(--primary)",
-                  fontSize: "0.75rem",
-                  fontWeight: 600,
-                  textTransform: "uppercase",
-                  letterSpacing: "0.1em",
-                  marginBottom: "1.5rem",
+                  background: "var(--tertiary-container)",
+                  color: "var(--tertiary)",
                 }}
               >
                 {t.nav_atlas}
               </div>
-              <h2
-                style={{
-                  fontFamily: "var(--font-display)",
-                  fontWeight: 600,
-                  fontSize: "clamp(2.5rem, 5vw, 4rem)",
-                  color: "var(--on-surface)",
-                  letterSpacing: "-0.05em",
-                  lineHeight: 1,
-                  marginBottom: "1.5rem",
-                }}
-              >
-                {t.atlas_title}
-              </h2>
-              <p
-                style={{
-                  fontFamily: "var(--font-sans)",
-                  fontSize: "1.25rem",
-                  color: "var(--on-surface-var)",
-                  lineHeight: 1.5,
-                  marginBottom: "3rem",
-                }}
-              >
-                {t.atlas_subtitle}
-              </p>
+              <h2 className="section-title">{t.atlas_title}</h2>
+              <p className="section-description">{t.atlas_subtitle}</p>
             </motion.div>
 
             <div
@@ -114,8 +82,20 @@ export const Atlas = ({
                   transition={{ delay: i * 0.1 }}
                   style={{ display: "flex", gap: "1.5rem" }}
                 >
-                  <div style={{ color: "var(--primary)", flexShrink: 0 }}>
-                    <f.icon size={28} />
+                  <div
+                    className="glass-panel"
+                    style={{
+                      width: 48,
+                      height: 48,
+                      borderRadius: "12px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      color: "var(--tertiary)",
+                      flexShrink: 0,
+                    }}
+                  >
+                    <f.icon size={24} />
                   </div>
                   <div>
                     <h3
@@ -155,7 +135,6 @@ export const Atlas = ({
               borderRadius: "40px",
               overflow: "hidden",
               position: "relative",
-              border: "1px solid var(--surface-container-highest)",
               boxShadow: "0 40px 100px rgba(0,0,0,0.15)",
             }}
           >

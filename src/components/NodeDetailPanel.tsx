@@ -180,34 +180,21 @@ export const NodeDetailPanel = ({
           transition: { duration: 0.25, ease: "easeIn" },
         }}
         transition={{ type: "spring", damping: 28, stiffness: 220 }}
-        className="glass-panel pointer-events-auto h-full relative overflow-hidden flex flex-col"
+        className="glass-panel pointer-events-auto h-full relative overflow-hidden flex flex-col p-8 rounded-[var(--radius-lg)] text-left"
         style={{
           margin: standalone ? "0 auto" : "12px",
           width: standalone ? "100%" : 516,
-          padding: "2rem",
-          borderRadius: "var(--radius-lg)",
           boxShadow: isDark
             ? "0 20px 80px rgba(0,0,0,0.6)"
             : "0 20px 80px rgba(0,100,123,0.15)",
-          border: isDark
-            ? "1px solid rgba(255,255,255,0.05)"
-            : "1px solid rgba(0,100,123,0.05)",
-          overflowY: "auto",
-          textAlign: "left",
         }}
       >
         <div
+          className="absolute -top-16 -right-16 w-[200px] h-[200px] rounded-full pointer-events-none"
           style={{
-            position: "absolute",
-            top: -64,
-            right: -64,
-            width: 200,
-            height: 200,
             background: isDark
               ? "radial-gradient(circle, rgba(0,195,237,0.08) 0%, transparent 70%)"
               : "radial-gradient(circle, rgba(0,195,237,0.12) 0%, transparent 70%)",
-            borderRadius: "50%",
-            pointerEvents: "none",
           }}
         />
 

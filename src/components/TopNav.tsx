@@ -65,39 +65,14 @@ export const TopNav = ({
     : "A";
 
   return (
-    <header className="sticky top-0 z-50 w-full px-6 py-6">
+    <header className="header-container">
       <div className="mx-auto flex items-center justify-center">
         {/* Nav Pill */}
-        <nav
-          className="glass-pill-nav nav-pill"
-          style={{
-            width: "100%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            padding: "0.5rem 1.25rem",
-            height: "64px",
-          }}
-        >
+        <nav className="nav-pill flex-between">
           {/* Left Section: Logo */}
-          <div
-            style={{
-              flex: 1,
-              display: "flex",
-              justifyContent: "flex-start",
-              paddingLeft: "1.5rem",
-            }}
-          >
+          <div className="flex-start" style={{ flex: 1, paddingLeft: "1.5rem" }}>
             <h1
-              style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "1.5rem",
-                fontWeight: 800,
-                color: "var(--primary)",
-                letterSpacing: "-0.03em",
-                margin: 0,
-                cursor: "pointer",
-              }}
+              className="logo-text"
               onClick={() => setActiveTab("progress")}
             >
               CarthosAI
@@ -106,7 +81,8 @@ export const TopNav = ({
 
           {/* Middle Section: Nav Buttons (Horizontal) */}
           <div
-            style={{ display: "flex", alignItems: "center", gap: "0.25rem" }}
+            className="hidden lg:flex"
+            style={{ alignItems: "center", gap: "0.25rem" }}
           >
             {navItems.map((item) => (
               <button
@@ -132,58 +108,19 @@ export const TopNav = ({
           </div>
 
           {/* Right Section: Theme Toggle + User Avatar */}
-          <div
-            style={{
-              flex: 1,
-              display: "flex",
-              justifyContent: "flex-end",
-              alignItems: "center",
-              gap: "0.875rem",
-              paddingRight: "0.75rem",
-            }}
-          >
+          <div className="flex-end" style={{ flex: 1, gap: "0.875rem", paddingRight: "0.75rem" }}>
             {/* Premium Theme Toggle */}
-            <div
-              style={{
-                display: "flex",
-                background: "var(--surface-container-low)",
-                padding: "3px",
-                borderRadius: "100px",
-                border: "1px solid var(--outline-variant)",
-                position: "relative",
-                gap: "2px",
-              }}
-            >
+            <div className="theme-lang-switch">
               <button
                 onClick={() => setTheme("light")}
-                style={{
-                  width: 32,
-                  height: 32,
-                  borderRadius: "50%",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  border: "none",
-                  cursor: "pointer",
-                  background: "transparent",
-                  color: theme === "light" ? "white" : "var(--outline)",
-                  transition: "color 0.2s",
-                  position: "relative",
-                  zIndex: 2,
-                }}
+                className="switch-btn"
+                style={{ color: theme === "light" ? "white" : "var(--outline)" }}
                 title="Light Mode"
               >
                 {theme === "light" && (
                   <motion.div
                     layoutId="active-theme"
-                    style={{
-                      position: "absolute",
-                      inset: 0,
-                      background: "var(--primary)",
-                      borderRadius: "50%",
-                      boxShadow: "0 2px 8px rgba(0, 100, 123, 0.2)",
-                      zIndex: -1,
-                    }}
+                    className="switch-active"
                     transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                   />
                 )}
@@ -191,34 +128,14 @@ export const TopNav = ({
               </button>
               <button
                 onClick={() => setTheme("dark")}
-                style={{
-                  width: 32,
-                  height: 32,
-                  borderRadius: "50%",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  border: "none",
-                  cursor: "pointer",
-                  background: "transparent",
-                  color: theme === "dark" ? "white" : "var(--outline)",
-                  transition: "color 0.2s",
-                  position: "relative",
-                  zIndex: 2,
-                }}
+                className="switch-btn"
+                style={{ color: theme === "dark" ? "white" : "var(--outline)" }}
                 title="Dark Mode"
               >
                 {theme === "dark" && (
                   <motion.div
                     layoutId="active-theme"
-                    style={{
-                      position: "absolute",
-                      inset: 0,
-                      background: "var(--primary)",
-                      borderRadius: "50%",
-                      boxShadow: "0 2px 10px rgba(0, 195, 237, 0.3)",
-                      zIndex: -1,
-                    }}
+                    className="switch-active"
                     transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                   />
                 )}
@@ -226,50 +143,17 @@ export const TopNav = ({
               </button>
             </div>
             {/* Language Toggle */}
-            <div
-              style={{
-                display: "flex",
-                background: "var(--surface-container-low)",
-                padding: "3px",
-                borderRadius: "100px",
-                border: "1px solid var(--outline-variant)",
-                position: "relative",
-                gap: "2px",
-              }}
-            >
+            <div className="theme-lang-switch">
               <button
                 onClick={() => setLanguage("es")}
-                style={{
-                  width: 32,
-                  height: 32,
-                  borderRadius: "50%",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  border: "none",
-                  cursor: "pointer",
-                  background: "transparent",
-                  color: language === "es" ? "white" : "var(--outline)",
-                  transition: "color 0.2s",
-                  position: "relative",
-                  zIndex: 2,
-                  fontFamily: "var(--font-sans)",
-                  fontSize: "0.6rem",
-                  fontWeight: 800,
-                }}
+                className="switch-btn font-bold text-[0.6rem]"
+                style={{ color: language === "es" ? "white" : "var(--outline)" }}
                 title="Español"
               >
                 {language === "es" && (
                   <motion.div
                     layoutId="active-lang"
-                    style={{
-                      position: "absolute",
-                      inset: 0,
-                      background: "var(--primary)",
-                      borderRadius: "50%",
-                      boxShadow: "0 2px 8px rgba(0, 100, 123, 0.2)",
-                      zIndex: -1,
-                    }}
+                    className="switch-active"
                     transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                   />
                 )}
@@ -277,37 +161,14 @@ export const TopNav = ({
               </button>
               <button
                 onClick={() => setLanguage("en")}
-                style={{
-                  width: 32,
-                  height: 32,
-                  borderRadius: "50%",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  border: "none",
-                  cursor: "pointer",
-                  background: "transparent",
-                  color: language === "en" ? "white" : "var(--outline)",
-                  transition: "color 0.2s",
-                  position: "relative",
-                  zIndex: 2,
-                  fontFamily: "var(--font-sans)",
-                  fontSize: "0.6rem",
-                  fontWeight: 800,
-                }}
+                className="switch-btn font-bold text-[0.6rem]"
+                style={{ color: language === "en" ? "white" : "var(--outline)" }}
                 title="English"
               >
                 {language === "en" && (
                   <motion.div
                     layoutId="active-lang"
-                    style={{
-                      position: "absolute",
-                      inset: 0,
-                      background: "var(--primary)",
-                      borderRadius: "50%",
-                      boxShadow: "0 2px 10px rgba(0, 195, 237, 0.3)",
-                      zIndex: -1,
-                    }}
+                    className="switch-active"
                     transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                   />
                 )}
@@ -315,35 +176,11 @@ export const TopNav = ({
               </button>
             </div>
             {/* User avatar + dropdown */}
-            <div ref={menuRef} style={{ position: "relative" }}>
+            <div ref={menuRef} className="relative flex-center" style={{ gap: "0.5rem" }}>
               <button
                 onClick={() => setMenuOpen((o) => !o)}
-                style={{
-                  width: 42,
-                  height: 42,
-                  borderRadius: "50%",
-                  background:
-                    "linear-gradient(135deg, var(--primary) 0%, var(--primary-fixed) 100%)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  border: "none",
-                  cursor: "pointer",
-                  fontFamily: "var(--font-sans)",
-                  fontSize: "0.85rem",
-                  fontWeight: 800,
-                  color: "white",
-                  boxShadow: menuOpen
-                    ? "0 0 0 3px rgba(0,195,237,0.25)"
-                    : "none",
-                  transition: "all 0.2s cubic-bezier(0.22, 1, 0.36, 1)",
-                }}
-                onMouseEnter={(e) =>
-                  !menuOpen && (e.currentTarget.style.transform = "scale(1.05)")
-                }
-                onMouseLeave={(e) =>
-                  !menuOpen && (e.currentTarget.style.transform = "scale(1)")
-                }
+                className="avatar-btn"
+                style={{ boxShadow: menuOpen ? "0 0 0 3px rgba(0,195,237,0.25)" : "none" }}
               >
                 {initials}
               </button>
@@ -367,37 +204,43 @@ export const TopNav = ({
                       zIndex: 100,
                     }}
                   >
-                    {/* User info */}
+                    {/* Logged in as - ONLY ON MOBILE/SMALLER to show name if not evident */}
                     <div
+                      className="lg:hidden"
                       style={{
                         padding: "0.5rem 0.75rem 0.875rem",
                         borderBottom: "1px solid var(--surface-container-high)",
                         marginBottom: "0.625rem",
                       }}
                     >
-                      <div
-                        style={{
-                          fontFamily: "var(--font-sans)",
-                          fontSize: "0.875rem",
-                          fontWeight: 700,
-                          color: "var(--on-surface)",
-                        }}
-                      >
-                        {userName || t.nav_explorer}
-                      </div>
-                      <div
-                        style={{
-                          fontFamily: "var(--font-sans)",
-                          fontSize: "0.72rem",
-                          color: "var(--outline)",
-                          marginTop: 3,
-                          display: "flex",
-                          alignItems: "center",
-                          gap: 5,
-                        }}
-                      >
-                        <div className="live-dot" /> {t.nav_neural_link}
-                      </div>
+                      <div style={{ fontFamily: "var(--font-sans)", fontSize: "0.875rem", fontWeight: 700, color: "var(--on-surface)" }}>{userName || t.nav_explorer}</div>
+                    </div>
+
+                    {/* Nav Items for mobile in dropdown */}
+                    <div className="lg:hidden" style={{ marginBottom: "0.625rem", paddingBottom: "0.625rem", borderBottom: "1px solid var(--surface-container-high)" }}>
+                      {navItems.map((item) => (
+                        <button
+                          key={item.id}
+                          onClick={() => { setActiveTab(item.id); setMenuOpen(false); }}
+                          style={{
+                            width: "100%",
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "0.75rem",
+                            padding: "0.75rem 0.875rem",
+                            borderRadius: "12px",
+                            border: "none",
+                            cursor: "pointer",
+                            background: activeTab === item.id ? "var(--primary-container)" : "transparent",
+                            fontFamily: "var(--font-sans)",
+                            fontSize: "0.85rem",
+                            fontWeight: 700,
+                            color: activeTab === item.id ? "var(--primary)" : "var(--on-surface-var)",
+                          }}
+                        >
+                          <item.icon size={16} /> {item.label}
+                        </button>
+                      ))}
                     </div>
 
                     {/* Logout */}
@@ -420,16 +263,7 @@ export const TopNav = ({
                         fontSize: "0.85rem",
                         fontWeight: 700,
                         color: "#ef4444",
-                        transition: "background 0.2s",
                       }}
-                      onMouseEnter={(e) =>
-                        ((e.currentTarget as HTMLElement).style.background =
-                          "rgba(239,68,68,0.08)")
-                      }
-                      onMouseLeave={(e) =>
-                        ((e.currentTarget as HTMLElement).style.background =
-                          "transparent")
-                      }
                     >
                       <Zap size={15} color="#ef4444" /> {t.nav_signout}
                     </button>

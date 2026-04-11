@@ -9,62 +9,21 @@ export const Methodology = ({ translations: t }: MethodologyProps) => {
   return (
     <section
       id="methodology"
-      className="relative z-10 max-w-7xl mx-auto px-6 py-32 border-t"
-      style={{ borderColor: "var(--surface-container-high)" }}
+      className="relative z-10 max-w-7xl mx-auto px-6 py-32"
     >
-      <div style={{ textAlign: "center", marginBottom: "5rem" }}>
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          style={{
-            display: "inline-block",
-            padding: "0.4rem 1rem",
-            borderRadius: "100px",
-            background: "var(--primary-container)",
-            color: "var(--primary)",
-            fontSize: "0.75rem",
-            fontWeight: 600,
-            textTransform: "uppercase",
-            letterSpacing: "0.1em",
-            marginBottom: "1rem",
-          }}
-        >
+      <div className="text-center mb-20">
+        <div className="section-badge">
           {t.nav_methodology}
-        </motion.div>
-        <h2
-          style={{
-            fontFamily: "var(--font-display)",
-            fontWeight: 600,
-            fontSize: "clamp(2.5rem, 5vw, 3.5rem)",
-            color: "var(--on-surface)",
-            letterSpacing: "-0.04em",
-            lineHeight: 1.1,
-          }}
-        >
+        </div>
+        <h2 className="section-title">
           {t.methodology_title}
         </h2>
-        <p
-          style={{
-            fontFamily: "var(--font-sans)",
-            fontSize: "1.2rem",
-            color: "var(--on-surface-var)",
-            maxWidth: 650,
-            margin: "1.5rem auto 0",
-            lineHeight: 1.6,
-          }}
-        >
+        <p className="section-description mx-auto mt-6">
           {t.methodology_subtitle}
         </p>
       </div>
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-          gap: "2.5rem",
-        }}
-      >
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
         {[
           {
             icon: Globe2,
@@ -97,53 +56,19 @@ export const Methodology = ({ translations: t }: MethodologyProps) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.15 }}
-            className="glass-panel"
-            style={{
-              padding: "2.5rem",
-              borderRadius: "24px",
-              border: "1px solid var(--surface-container-highest)",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              height: "100%",
-            }}
+            className="glass-panel flex flex-col items-center text-center p-10 rounded-[24px] h-full"
           >
             <div
-              style={{
-                width: 54,
-                height: 54,
-                borderRadius: "16px",
-                background: "var(--surface-container-low)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                marginBottom: "1.5rem",
-                color: f.color,
-                boxShadow: `0 8px 20px rgba(0,0,0,0.1)`,
-              }}
+              className="w-[54px] h-[54px] rounded-2xl bg-[var(--surface-container-low)] flex items-center justify-center mb-6 shadow-sm"
+              style={{ color: f.color }}
             >
               <f.icon size={35} />
             </div>
             <div>
-              <h4
-                style={{
-                  fontFamily: "var(--font-display)",
-                  fontWeight: 800,
-                  fontSize: "1.1rem",
-                  color: "var(--on-surface)",
-                  marginBottom: "0.4rem",
-                }}
-              >
+              <h4 className="font-display font-extrabold text-[1.1rem] text-[var(--on-surface)] mb-2">
                 {f.title}
               </h4>
-              <p
-                style={{
-                  fontFamily: "var(--font-sans)",
-                  fontSize: "0.9rem",
-                  color: "var(--on-surface-var)",
-                  lineHeight: 1.5,
-                }}
-              >
+              <p className="font-sans text-[0.9rem] text-[var(--on-surface-var)] leading-relaxed">
                 {f.desc}
               </p>
             </div>

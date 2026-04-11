@@ -1,5 +1,6 @@
-import { motion } from "motion/react";
-import { Network, Sun, Moon, Globe } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import { Network, Sun, Moon, Globe, Menu, X } from "lucide-react";
 import { Button } from "../ui/Button";
 import { Language } from "../../translations";
 
@@ -24,285 +25,205 @@ export const LandingNav = ({
   setLanguage,
   translations: t,
 }: LandingNavProps) => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const NavContent = () => (
+    <>
+      {["Methodology", "Granular Tracking", "Neural Atlas"].map((item) => (
+        <button
+          key={item}
+          onClick={() => {
+            const id = item.toLowerCase().replace(/\s+/g, "-");
+            document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+            setIsMobileMenuOpen(false);
+          }}
+          className="nav-link"
+          style={{
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+            fontFamily: "var(--font-sans)",
+            fontSize: "0.7rem",
+            fontWeight: 700,
+            textTransform: "uppercase",
+            letterSpacing: "0.08em",
+            color: "var(--on-surface-var)",
+            transition: "color 0.2s",
+          }}
+        >
+          {item === "Methodology"
+            ? t.nav_methodology
+            : item === "Granular Tracking"
+              ? t.nav_tracking
+              : t.nav_atlas}
+        </button>
+      ))}
+    </>
+  );
+
   return (
-    <header
-      className="relative z-50 w-full px-6 py-6 mx-auto"
-      style={{
-        display: "grid",
-        gridTemplateColumns: "1fr auto 1fr",
-        alignItems: "center",
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: "0.5rem",
-          justifySelf: "flex-start",
-        }}
-      >
-        <div
-          style={{
-            width: 28,
-            height: 28,
-            borderRadius: "8px",
-            background:
-              "linear-gradient(135deg, var(--primary) 0%, var(--primary-fixed) 100%)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            color: "white",
-          }}
-        >
-          <Network size={16} />
-        </div>
-        <h1
-          style={{
-            fontFamily: "var(--font-display)",
-            fontWeight: 800,
-            fontSize: "2.25rem",
-            color: "var(--on-surface)",
-            letterSpacing: "-0.04em",
-          }}
-        >
-          CarthosAI
-        </h1>
+    <header className="header-container">
+      <div className="mx-auto flex items-center justify-center">
+        {/* Nav Pill */}
+        <nav className="nav-pill flex-between lg:w-[1100px]">
+          {/* Left Section: Logo */}
+          <div className="flex-start" style={{ flex: 1, paddingLeft: "1.5rem" }}>
+            <div
+              style={{
+                width: 28,
+                height: 28,
+                borderRadius: "8px",
+                background:
+                  "linear-gradient(135deg, var(--primary) 0%, var(--primary-fixed) 100%)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                color: "white",
+                marginRight: "0.5rem"
+              }}
+            >
+              <Network size={16} />
+            </div>
+            <h1 className="logo-text">
+              Carthos<span className="logo-ai">AI</span>
+            </h1>
+          </div>
+
+          <div className="hidden lg:flex" style={{ gap: "2rem" }}>
+            <NavContent />
+          </div>
+
+          {/* Right Section: Theme/Lang + Burger */}
+          <div className="flex-end" style={{ flex: 1, gap: "1rem", paddingRight: "0.75rem" }}>
+            <div className="hidden lg:flex items-center gap-4">
+              <div className="theme-lang-switch">
+                <button
+                  onClick={() => setTheme("light")}
+                  className="switch-btn"
+                  style={{ color: theme === "light" ? "white" : "var(--outline)" }}
+                >
+                  {theme === "light" && (
+                    <motion.div
+                      layoutId="active-theme-land"
+                      className="switch-active"
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    />
+                  )}
+                  <Sun size={14} strokeWidth={theme === "light" ? 2.5 : 2} />
+                </button>
+                <button
+                  onClick={() => setTheme("dark")}
+                  className="switch-btn"
+                  style={{ color: theme === "dark" ? "white" : "var(--outline)" }}
+                >
+                  {theme === "dark" && (
+                    <motion.div
+                      layoutId="active-theme-land"
+                      className="switch-active"
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    />
+                  )}
+                  <Moon size={14} strokeWidth={theme === "dark" ? 2.5 : 2} />
+                </button>
+              </div>
+
+              <div className="theme-lang-switch">
+                <button
+                  onClick={() => setLanguage("es")}
+                  className="switch-btn font-bold text-[0.65rem]"
+                  style={{ color: language === "es" ? "white" : "var(--outline)" }}
+                >
+                  {language === "es" && (
+                    <motion.div
+                      layoutId="active-lang-land"
+                      className="switch-active"
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    />
+                  )}
+                  ES
+                </button>
+                <button
+                  onClick={() => setLanguage("en")}
+                  className="switch-btn font-bold text-[0.65rem]"
+                  style={{ color: language === "en" ? "white" : "var(--outline)" }}
+                >
+                  {language === "en" && (
+                    <motion.div
+                      layoutId="active-lang-land"
+                      className="switch-active"
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    />
+                  )}
+                  EN
+                </button>
+              </div>
+            </div>
+
+            <Button
+              onClick={onSignIn}
+              variant="outline"
+              size="sm"
+              className="hidden lg:flex"
+              style={{ borderRadius: "12px" }}
+            >
+              {t.hero_signin}
+            </Button>
+            <Button
+              onClick={onStart}
+              variant="primary"
+              size="sm"
+              className="hidden lg:flex"
+              style={{ borderRadius: "12px" }}
+            >
+              {t.hero_cta}
+            </Button>
+
+            {/* Burger Button */}
+            <button
+              className="lg:hidden flex items-center justify-center w-10 h-10"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </nav>
       </div>
 
-      <nav
-        className="glass-pill-nav hidden md:flex"
-        style={{
-          gap: "2rem",
-          padding: "0.75rem 2rem",
-          justifySelf: "center",
-        }}
-      >
-        {["Methodology", "Granular Tracking", "Neural Atlas"].map((item) => (
-          <button
-            key={item}
-            onClick={() => {
-              const id = item.toLowerCase().replace(/\s+/g, "-");
-              document
-                .getElementById(id)
-                ?.scrollIntoView({ behavior: "smooth" });
-            }}
-            className="nav-link"
-            style={{
-              background: "none",
-              border: "none",
-              cursor: "pointer",
-              fontFamily: "var(--font-sans)",
-              fontSize: "0.7rem",
-              fontWeight: 700,
-              textTransform: "uppercase",
-              letterSpacing: "0.08em",
-              color: "var(--on-surface-var)",
-              transition: "color 0.2s",
-            }}
-          >
-            {item === "Methodology"
-              ? t.nav_methodology
-              : item === "Granular Tracking"
-                ? t.nav_tracking
-                : t.nav_atlas}
-          </button>
-        ))}
-      </nav>
-
-      <div
-        style={{
-          display: "flex",
-          gap: "1rem",
-          alignItems: "center",
-          justifySelf: "flex-end",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            background: "var(--surface-container-low)",
-            padding: "3px",
-            borderRadius: "100px",
-            border: "1px solid var(--outline-variant)",
-            position: "relative",
-            gap: "2px",
-          }}
-        >
-          <button
-            onClick={() => setTheme("light")}
-            style={{
-              width: 32,
-              height: 32,
-              borderRadius: "50%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              border: "none",
-              cursor: "pointer",
-              background: "transparent",
-              color: theme === "light" ? "white" : "var(--outline)",
-              transition: "color 0.2s",
-              position: "relative",
-              zIndex: 2,
-            }}
-          >
-            {theme === "light" && (
-              <motion.div
-                layoutId="active-theme-landing"
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  background: "var(--primary)",
-                  borderRadius: "50%",
-                  boxShadow: "0 2px 8px rgba(0, 100, 123, 0.2)",
-                  zIndex: -1,
-                }}
-                transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-              />
-            )}
-            <Sun size={14} strokeWidth={theme === "light" ? 2.5 : 2} />
-          </button>
-          <button
-            onClick={() => setTheme("dark")}
-            style={{
-              width: 32,
-              height: 32,
-              borderRadius: "50%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              border: "none",
-              cursor: "pointer",
-              background: "transparent",
-              color: theme === "dark" ? "white" : "var(--outline)",
-              transition: "color 0.2s",
-              position: "relative",
-              zIndex: 2,
-            }}
-          >
-            {theme === "dark" && (
-              <motion.div
-                layoutId="active-theme-landing"
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  background: "var(--primary)",
-                  borderRadius: "50%",
-                  boxShadow: "0 2px 10px rgba(0, 195, 237, 0.3)",
-                  zIndex: -1,
-                }}
-                transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-              />
-            )}
-            <Moon size={14} strokeWidth={theme === "dark" ? 2.5 : 2} />
-          </button>
-        </div>
-
-        <div
-          style={{
-            display: "flex",
-            background: "var(--surface-container-low)",
-            padding: "3px",
-            borderRadius: "100px",
-            border: "1px solid var(--outline-variant)",
-            position: "relative",
-            gap: "2px",
-          }}
-        >
-          <button
-            onClick={() => setLanguage("es")}
-            style={{
-              width: 32,
-              height: 32,
-              borderRadius: "50%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              border: "none",
-              cursor: "pointer",
-              background: "transparent",
-              color: language === "es" ? "white" : "var(--outline)",
-              transition: "color 0.2s",
-              position: "relative",
-              zIndex: 2,
-              fontFamily: "var(--font-sans)",
-              fontSize: "0.6rem",
-              fontWeight: 800,
-            }}
-            title="Español"
-          >
-            {language === "es" && (
-              <motion.div
-                layoutId="active-lang-landing"
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  background: "var(--primary)",
-                  borderRadius: "50%",
-                  boxShadow: "0 2px 8px rgba(0, 100, 123, 0.2)",
-                  zIndex: -1,
-                }}
-                transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-              />
-            )}
-            ES
-          </button>
-          <button
-            onClick={() => setLanguage("en")}
-            style={{
-              width: 32,
-              height: 32,
-              borderRadius: "50%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              border: "none",
-              cursor: "pointer",
-              background: "transparent",
-              color: language === "en" ? "white" : "var(--outline)",
-              transition: "color 0.2s",
-              position: "relative",
-              zIndex: 2,
-              fontFamily: "var(--font-sans)",
-              fontSize: "0.6rem",
-              fontWeight: 800,
-            }}
-            title="English"
-          >
-            {language === "en" && (
-              <motion.div
-                layoutId="active-lang-landing"
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  background: "var(--primary)",
-                  borderRadius: "50%",
-                  boxShadow: "0 2px 10px rgba(0, 195, 237, 0.3)",
-                  zIndex: -1,
-                }}
-                transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-              />
-            )}
-            EN
-          </button>
-        </div>
-        <Button
-          onClick={onSignIn}
-          variant="outline"
-          size="sm"
-          style={{ borderRadius: "12px" }}
-        >
-          {t.hero_signin}
-        </Button>
-        <Button
-          onClick={onStart}
-          variant="primary"
-          size="sm"
-          style={{ borderRadius: "12px" }}
-        >
-          {t.hero_cta}
-        </Button>
-      </div>
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="mobile-menu-overlay"
+            />
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="glass-panel mobile-drawer"
+              style={{ background: "var(--surface-container-low)" }}
+            >
+              <div className="flex-col" style={{ gap: "2rem" }}>
+                <NavContent />
+              </div>
+              
+              <div style={{ marginTop: "auto" }} className="flex-col gap-4">
+                 <div className="flex gap-4">
+                    <button onClick={() => setLanguage("es")} style={{ color: language === "es" ? "var(--primary)" : "var(--on-surface-var)", fontWeight: 800 }}>ES</button>
+                    <button onClick={() => setLanguage("en")} style={{ color: language === "en" ? "var(--primary)" : "var(--on-surface-var)", fontWeight: 800 }}>EN</button>
+                 </div>
+                 <Button onClick={onSignIn} variant="outline" className="w-full">{t.hero_signin}</Button>
+                 <Button onClick={onStart} variant="primary" className="w-full">{t.hero_cta}</Button>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </header>
   );
 };

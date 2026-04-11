@@ -228,61 +228,20 @@ export const StellarProgress = ({
   }
 
   return (
-    <div
-      style={{ maxWidth: 1100, margin: "0 auto", padding: "2rem 1.5rem 5rem" }}
-    >
+    <div className="dash-container">
       {/* Header */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "flex-start",
-          marginBottom: "2.5rem",
-        }}
-      >
+      <div className="dash-header flex-between mobile-stack" style={{ gap: "1.5rem", alignItems: "flex-start" }}>
         <div>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "0.5rem",
-              marginBottom: "0.5rem",
-            }}
-          >
+          <div className="flex-start" style={{ gap: "0.5rem", marginBottom: "0.5rem" }}>
             <span className="live-dot" />
-            <span
-              style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "0.65rem",
-                textTransform: "uppercase",
-                letterSpacing: "0.14em",
-                color: "var(--primary-fixed)",
-                fontWeight: 700,
-              }}
-            >
+            <span className="section-badge mb-0 text-[0.65rem] py-1">
               {t.dash_sync_status}
             </span>
           </div>
-          <h2
-            style={{
-              fontFamily: "var(--font-display)",
-              fontWeight: 800,
-              fontSize: "clamp(2rem, 5vw, 3rem)",
-              letterSpacing: "-0.03em",
-              lineHeight: 1.1,
-              color: "var(--on-surface)",
-            }}
-          >
+          <h2 className="dash-title">
             {t.dash_welcome}
           </h2>
-          <p
-            style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: "var(--text-body-md)",
-              color: "var(--on-surface-var)",
-              marginTop: "0.5rem",
-            }}
-          >
+          <p className="section-description mb-0 mt-2">
             {t.dash_tagline
               .replace("{n}", String(learningPaths.length))
               .replace(
@@ -299,16 +258,7 @@ export const StellarProgress = ({
         </div>
 
         {/* Stats badge */}
-        <div
-          className="card"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "1rem",
-            padding: "1rem 1.5rem",
-            flexShrink: 0,
-          }}
-        >
+        <div className="card flex-start" style={{ gap: "1rem", padding: "1rem 1.5rem", flexShrink: 0 }}>
           <div
             style={{
               width: 44,
@@ -324,26 +274,10 @@ export const StellarProgress = ({
             <Zap size={20} color="white" />
           </div>
           <div>
-            <div
-              style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "0.6rem",
-                textTransform: "uppercase",
-                letterSpacing: "0.12em",
-                color: "var(--on-surface-var)",
-                marginBottom: 2,
-              }}
-            >
+            <div className="stat-label mb-0.5 uppercase tracking-widest text-[0.6rem]">
               {t.dash_overview}
             </div>
-            <div
-              style={{
-                fontFamily: "var(--font-display)",
-                fontWeight: 800,
-                fontSize: "1.375rem",
-                color: "var(--on-surface)",
-              }}
-            >
+            <div className="stat-value text-primary">
               {stats.overallProgress}%
             </div>
           </div>
@@ -351,13 +285,7 @@ export const StellarProgress = ({
       </div>
 
       {/* Main grid */}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 360px",
-          gap: "1.25rem",
-        }}
-      >
+      <div className="dash-grid">
         {/* Left col */}
         <div
           style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}
@@ -373,24 +301,10 @@ export const StellarProgress = ({
               }}
             >
               <div>
-                <h3
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    fontWeight: 700,
-                    fontSize: "var(--text-title-md)",
-                    color: "var(--on-surface)",
-                  }}
-                >
+                <h3 className="dash-card-title">
                   {t.dash_map_completion}
                 </h3>
-                <p
-                  style={{
-                    fontFamily: "var(--font-sans)",
-                    fontSize: "0.72rem",
-                    color: "var(--on-surface-var)",
-                    marginTop: 2,
-                  }}
-                >
+                <p className="dash-card-desc">
                   {t.dash_chart_desc}
                 </p>
               </div>
@@ -471,16 +385,7 @@ export const StellarProgress = ({
             </div>
 
             {/* Stats row */}
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(3, 1fr)",
-                gap: "1rem",
-                marginTop: "1.25rem",
-                paddingTop: "1.25rem",
-                borderTop: "1px solid var(--surface-container-high)",
-              }}
-            >
+            <div className="responsive-grid-3 mt-5 pt-5 border-t border-[var(--surface-container-high)]">
               {[
                 {
                   label: t.dash_total_nodes,
@@ -499,26 +404,8 @@ export const StellarProgress = ({
                 },
               ].map((s) => (
                 <div key={s.label}>
-                  <div
-                    style={{
-                      fontFamily: "var(--font-sans)",
-                      fontSize: "0.7rem",
-                      color: "var(--on-surface-var)",
-                      marginBottom: 4,
-                    }}
-                  >
-                    {s.label}
-                  </div>
-                  <div
-                    style={{
-                      fontFamily: "var(--font-display)",
-                      fontWeight: 800,
-                      fontSize: "1.5rem",
-                      color: s.color,
-                    }}
-                  >
-                    {s.value}
-                  </div>
+                  <div className="stat-label">{s.label}</div>
+                  <div className="stat-value" style={{ color: s.color }}>{s.value}</div>
                 </div>
               ))}
             </div>
@@ -526,6 +413,7 @@ export const StellarProgress = ({
 
           {/* Two-col row: Next Quest + Recent Syncs */}
           <div
+            className="responsive-grid-2"
             style={{
               display: "grid",
               gridTemplateColumns: "1fr 1.4fr",
@@ -586,27 +474,10 @@ export const StellarProgress = ({
                 >
                   {stats.nextQuest ? (
                     <>
-                      <div
-                        style={{
-                          fontFamily: "var(--font-sans)",
-                          fontSize: "0.6rem",
-                          textTransform: "uppercase",
-                          letterSpacing: "0.1em",
-                          color: "rgba(255,255,255,0.45)",
-                          marginBottom: 4,
-                        }}
-                      >
+                      <div className="quest-label">
                         {stats.nextQuest.mapName}
                       </div>
-                      <div
-                        style={{
-                          fontFamily: "var(--font-display)",
-                          fontWeight: 700,
-                          fontSize: "0.95rem",
-                          color: "white",
-                          marginBottom: 4,
-                        }}
-                      >
+                      <div className="quest-title">
                         {stats.nextQuest.title}
                       </div>
                       <div

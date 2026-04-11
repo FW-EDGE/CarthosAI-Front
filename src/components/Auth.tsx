@@ -39,7 +39,6 @@ export const Auth = ({
         ? await authService.login({ email, password })
         : await authService.register({ nombre: name, email, password });
 
-      // Store JWT token locally
       localStorage.setItem("carthos_token", data.token);
       if (data.nombre) localStorage.setItem("carthos_user_name", data.nombre);
 
@@ -52,94 +51,25 @@ export const Auth = ({
   };
 
   return (
-    <div
-      className="min-h-screen flex items-center justify-center relative overflow-hidden"
-      style={{ background: "var(--surface)" }}
-    >
-      {/* Background Layer */}
-      <div
-        style={{
-          position: "fixed",
-          inset: 0,
-          pointerEvents: "none",
-          zIndex: 0,
-          background:
-            "radial-gradient(circle at 50% -20%, rgba(0,195,237,0.1) 0%, transparent 60%), radial-gradient(circle at 50% 120%, rgba(0,100,123,0.08) 0%, transparent 60%)",
-        }}
-      />
-
-      {/* Grid Pattern overlay */}
-      <div
-        style={{
-          position: "fixed",
-          inset: 0,
-          zIndex: 0,
-          opacity: 0.3,
-          pointerEvents: "none",
-          backgroundImage: `radial-gradient(var(--surface-container-high) 1px, transparent 1px)`,
-          backgroundSize: "32px 32px",
-        }}
-      />
+    <div className="landing-container flex items-center justify-center p-6">
+      <div className="bg-ambience" />
+      <div className="grid-overlay" />
 
       <motion.div
         initial={{ opacity: 0, scale: 0.96, y: 10 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-        className="glass-panel relative z-10 w-full max-w-md mx-4"
-        style={{
-          padding: "3rem 2.5rem",
-          borderRadius: "24px",
-          boxShadow: "0 30px 60px rgba(0,100,123,0.12)",
-        }}
+        className="glass-panel w-full max-w-md p-10 relative z-10 shadow-2xl"
       >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            marginBottom: "2.5rem",
-          }}
-        >
-          <div
-            style={{
-              width: 48,
-              height: 48,
-              borderRadius: "14px",
-              background:
-                "linear-gradient(135deg, var(--primary) 0%, var(--primary-fixed) 100%)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "white",
-              marginBottom: "1.25rem",
-              boxShadow: "0 10px 20px rgba(0,195,237,0.25)",
-            }}
-          >
-            <Fingerprint size={24} />
+        <div className="flex flex-col items-center mb-10">
+          <div className="w-14 h-14 rounded-2xl bg-[var(--primary-container)] text-[var(--primary)] flex items-center justify-center mb-6 shadow-sm">
+            <Fingerprint size={28} />
           </div>
-          <h2
-            style={{
-              fontFamily: "var(--font-display)",
-              fontWeight: 800,
-              fontSize: "1.75rem",
-              color: "var(--on-surface)",
-              letterSpacing: "-0.03em",
-            }}
-          >
+          <h2 className="section-title text-[1.75rem] mb-2 text-center">
             {isLogin ? t.auth_welcome_back : t.auth_initialize_link}
           </h2>
-          <p
-            style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: "0.9rem",
-              color: "var(--on-surface-var)",
-              marginTop: "0.5rem",
-              textAlign: "center",
-            }}
-          >
-            {isLogin
-              ? t.auth_access_orbit
-              : t.auth_create_id}
+          <p className="font-sans text-[0.9rem] text-[var(--on-surface-var)] text-center">
+            {isLogin ? t.auth_access_orbit : t.auth_create_id}
           </p>
         </div>
 
@@ -147,58 +77,25 @@ export const Auth = ({
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            style={{
-              display: "flex",
-              alignItems: "flex-start",
-              gap: "0.75rem",
-              padding: "1rem",
-              borderRadius: "12px",
-              background: "rgba(220, 38, 38, 0.1)",
-              border: "1px solid rgba(220, 38, 38, 0.2)",
-              marginBottom: "1.5rem",
-            }}
+            className="flex gap-4 p-4 rounded-xl bg-red-500/10 border border-red-500/20 mb-6"
           >
-            <AlertCircle size={18} color="#dc2626" style={{ marginTop: 2 }} />
-            <span
-              style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "0.8rem",
-                color: "#ef4444",
-                lineHeight: 1.4,
-              }}
-            >
+            <AlertCircle size={18} className="text-red-500 shrink-0 mt-0.5" />
+            <span className="font-sans text-[0.85rem] text-red-500 leading-relaxed font-semibold">
               {errorMsg}
             </span>
           </motion.div>
         )}
 
-        <form
-          onSubmit={handleSubmit}
-          style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}
-        >
+        <form onSubmit={handleSubmit} className="flex flex-col gap-6">
           <AnimatePresence mode="popLayout">
             {!isLogin && (
               <motion.div
-                initial={{ opacity: 0, height: 0, overflow: "hidden" }}
+                initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "0.5rem",
-                }}
+                className="flex flex-col gap-2 overflow-hidden"
               >
-                <label
-                  style={{
-                    fontFamily: "var(--font-sans)",
-                    fontSize: "0.75rem",
-                    fontWeight: 700,
-                    color: "var(--on-surface)",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.06em",
-                    marginLeft: 4,
-                  }}
-                >
+                <label className="font-sans text-[0.75rem] font-bold text-[var(--on-surface-var)] uppercase tracking-wider px-1">
                   {t.auth_callsign}
                 </label>
                 <input
@@ -213,101 +110,41 @@ export const Auth = ({
             )}
           </AnimatePresence>
 
-          <div
-            style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}
-          >
-            <label
-              style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "0.75rem",
-                fontWeight: 700,
-                color: "var(--on-surface)",
-                textTransform: "uppercase",
-                letterSpacing: "0.06em",
-                marginLeft: 4,
-              }}
-            >
+          <div className="flex flex-col gap-2">
+            <label className="font-sans text-[0.75rem] font-bold text-[var(--on-surface-var)] uppercase tracking-wider px-1">
               {t.auth_network_id}
             </label>
             <div className="relative">
-              <Mail
-                size={16}
-                style={{
-                  position: "absolute",
-                  left: 16,
-                  top: "50%",
-                  transform: "translateY(-50%)",
-                  color: "var(--outline)",
-                }}
-              />
+              <Mail size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--outline)]" />
               <input
                 type="email"
                 required
-                className="input-ethereal"
+                className="input-ethereal pl-[2.8rem]"
                 placeholder="user@aetheris.io"
-                style={{ paddingLeft: "2.75rem" }}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
           </div>
 
-          <div
-            style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}
-          >
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <label
-                style={{
-                  fontFamily: "var(--font-sans)",
-                  fontSize: "0.75rem",
-                  fontWeight: 700,
-                  color: "var(--on-surface)",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.06em",
-                  marginLeft: 4,
-                }}
-              >
+          <div className="flex flex-col gap-2">
+            <div className="flex justify-between items-center px-1">
+              <label className="font-sans text-[0.75rem] font-bold text-[var(--on-surface-var)] uppercase tracking-wider">
                 {t.auth_passcode}
               </label>
               {isLogin && (
-                <button
-                  type="button"
-                  style={{
-                    background: "none",
-                    border: "none",
-                    fontFamily: "var(--font-sans)",
-                    fontSize: "0.7rem",
-                    color: "var(--primary)",
-                    cursor: "pointer",
-                  }}
-                >
+                <button type="button" className="font-sans text-[0.75rem] font-bold text-[var(--primary)] hover:underline">
                   {t.auth_lost_key}
                 </button>
               )}
             </div>
             <div className="relative">
-              <Lock
-                size={16}
-                style={{
-                  position: "absolute",
-                  left: 16,
-                  top: "50%",
-                  transform: "translateY(-50%)",
-                  color: "var(--outline)",
-                }}
-              />
+              <Lock size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--outline)]" />
               <input
                 type="password"
                 required
-                className="input-ethereal"
+                className="input-ethereal pl-[2.8rem]"
                 placeholder="••••••••"
-                style={{ paddingLeft: "2.75rem" }}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
@@ -318,22 +155,15 @@ export const Auth = ({
             type="submit"
             isLoading={loading}
             variant="primary"
-            className="w-full mt-2"
-            style={{ borderRadius: "12px" }}
-            rightIcon={<ArrowRight size={16} />}
+            className="w-full h-12 rounded-xl font-bold mt-2"
+            rightIcon={<ArrowRight size={18} />}
           >
             {isLogin ? t.auth_authenticate : t.auth_establish_link}
           </Button>
         </form>
 
-        <div style={{ marginTop: "2rem", textAlign: "center" }}>
-          <span
-            style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: "0.85rem",
-              color: "var(--on-surface-var)",
-            }}
-          >
+        <div className="mt-8 text-center pt-6 border-t border-[var(--surface-container-high)]">
+          <span className="font-sans text-[0.875rem] text-[var(--on-surface-var)]">
             {isLogin ? t.auth_new_network : t.auth_already_explorer}
           </span>
           <Button
@@ -344,8 +174,7 @@ export const Auth = ({
               setErrorMsg("");
             }}
             disabled={loading}
-            style={{ fontWeight: 800, color: "var(--primary-fixed)" }}
-            className="ml-1"
+            className="font-extrabold text-[var(--primary-fixed)] ml-1 hover:bg-[var(--primary-container)] h-auto py-1"
           >
             {isLogin ? t.auth_register_now : t.auth_signin_here}
           </Button>

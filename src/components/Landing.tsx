@@ -30,38 +30,12 @@ export const Landing = ({
   const DEMO_PATH = getDemoPath(t);
 
   return (
-    <div
-      className="min-h-screen relative overflow-hidden selection:bg-[var(--primary-container)] selection:text-[var(--primary)]"
-      style={{
-        background: isDark ? "#0b0f11" : "var(--surface)",
-        transition: "background 0.3s ease",
-      }}
-    >
+    <div className="landing-container selection:bg-[var(--primary-container)] selection:text-[var(--primary)]">
       {/* ── BACKGROUND AMBIENCE ── */}
-      <div
-        style={{
-          position: "fixed",
-          inset: 0,
-          pointerEvents: "none",
-          zIndex: 0,
-          background: isDark
-            ? "radial-gradient(circle at 15% 10%, rgba(0,195,237,0.15) 0%, transparent 45%), radial-gradient(circle at 85% 60%, rgba(0,100,123,0.1) 0%, transparent 50%), radial-gradient(circle at 50% 120%, rgba(0,195,237,0.06) 0%, transparent 60%)"
-            : "radial-gradient(circle at 15% 10%, rgba(0,195,237,0.12) 0%, transparent 45%), radial-gradient(circle at 85% 60%, rgba(0,100,123,0.08) 0%, transparent 50%), radial-gradient(circle at 50% 120%, rgba(0,195,237,0.05) 0%, transparent 60%)",
-        }}
-      />
+      <div className="bg-ambience" />
       
       {/* Grid Pattern overlay */}
-      <div
-        style={{
-          position: "fixed",
-          inset: 0,
-          zIndex: 0,
-          opacity: 0.3,
-          pointerEvents: "none",
-          backgroundImage: `radial-gradient(var(--surface-container-high) 1px, transparent 1px)`,
-          backgroundSize: "32px 32px",
-        }}
-      />
+      <div className="grid-overlay" />
 
       <LandingNav
         onStart={onStart}
