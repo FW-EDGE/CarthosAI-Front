@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import { Fingerprint, MapPin, Zap } from "lucide-react";
 import { Button } from "../../components/ui/Button";
-import { FuturisticMap } from "../../components/FuturisticMap";
+import { LandingMap } from "../../components/LandingMap";
 import { LearningPath } from "../../types";
 
 interface HeroProps {
@@ -156,11 +156,12 @@ export const Hero = ({
           }}
         >
           <div style={{ position: "absolute", inset: 0, zIndex: 10 }}>
-            <FuturisticMap
+            <LandingMap
               path={demoPath}
               theme={theme}
               readOnly={true}
               disableZoom
+              language={t.nav_map === "Mapa" ? "es" : "en"}
             />
           </div>
 

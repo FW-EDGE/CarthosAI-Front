@@ -1,75 +1,219 @@
 import { LearningPath } from "../types";
 
 export const getDemoPath = (t: any): LearningPath => ({
-  id: "demo-landing",
+  id: "69c9b3ec150e02452f3a69fd",
   name: t.demo_map_name,
   description: t.demo_map_desc,
   nodes: [
     {
-      id: "node-1",
+      id: "1",
       title: t.demo_node_1_title,
-      type: "article",
-      description: t.demo_node_1_desc,
-      source: "Sports Medicine Weekly",
-      location: "Issue 42",
-      status: "completed",
-      progress: 100,
-      connections: ["node-2", "node-3"],
-    },
-    {
-      id: "node-2",
-      title: t.demo_node_2_title,
-      type: "chapter",
-      description: t.demo_node_2_desc,
-      source: "Human Anatomy — Tortora",
-      location: "Chapter 10",
-      status: "completed",
-      progress: 100,
-      connections: ["node-4"],
-    },
-    {
-      id: "node-3",
-      title: t.demo_node_3_title,
-      type: "video",
-      description: t.demo_node_3_desc,
-      source: "Aspetar Sports Medicine Journal",
-      location: "Vol. 12",
-      status: "in-progress",
-      progress: 45,
-      connections: ["node-4", "node-5"],
-    },
-    {
-      id: "node-4",
-      title: t.demo_node_4_title,
-      type: "course",
-      description: t.demo_node_4_desc,
-      source: "NSCA Essentials of Strength Training",
-      location: "Part III",
-      status: "unexplored",
-      progress: 0,
-      connections: ["node-6"],
-    },
-    {
-      id: "node-5",
-      title: t.demo_node_5_title,
       type: "book",
-      description: t.demo_node_5_desc,
-      source: "Exercise Physiology — McArdle",
-      location: "Chapter 7",
-      status: "unexplored",
-      progress: 0,
-      connections: ["node-6"],
+      description: t.demo_node_1_desc,
+      source: "Aircraft Design: A Conceptual Approach",
+      link: "https://www.airloads.net/Downloads/Textbooks/Aircraft%20Design-A%20Conceptual%20Approach.pdf",
+      image: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=1000&auto=format&fit=crop",
+      connections: ["2", "3"],
+      status: "completed",
+      progress: 100,
+      studyPlan: {
+        steps: [
+          {
+            stage: t.demo_node_1_step_1_stage,
+            focus: t.demo_node_1_step_1_focus,
+            action: t.demo_node_1_step_1_action,
+            estimatedTime: "3 h",
+            isCompleted: true
+          },
+          {
+            stage: t.demo_node_1_step_2_stage,
+            focus: t.demo_node_1_step_2_focus,
+            action: t.demo_node_1_step_2_action,
+            estimatedTime: "5 h",
+            isCompleted: true
+          },
+          {
+            stage: t.demo_node_1_step_3_stage,
+            focus: t.demo_node_1_step_3_focus,
+            action: t.demo_node_1_step_3_action,
+            estimatedTime: "4 h",
+            isCompleted: true
+          },
+          {
+            stage: t.demo_node_1_step_4_stage,
+            focus: t.demo_node_1_step_4_focus,
+            action: t.demo_node_1_step_4_action,
+            estimatedTime: "6 h",
+            isCompleted: true
+          },
+          {
+            stage: t.demo_node_1_step_5_stage,
+            focus: t.demo_node_1_step_5_focus,
+            action: t.demo_node_1_step_5_action,
+            estimatedTime: "4 h",
+            isCompleted: true
+          }
+        ]
+      },
+      x: 516.538777845487,
+      y: 424.4591755735205
     },
     {
-      id: "node-6",
-      title: t.demo_node_6_title,
-      type: "article",
-      description: t.demo_node_6_desc,
-      source: "Journal of Sports Sciences",
-      location: "2024 Edition",
+      id: "2",
+      title: t.demo_node_2_title,
+      type: "course",
+      description: t.demo_node_2_desc,
+      source: "Principles of Flight from MIT OpenCourseWare",
+      link: "https://www.youtube.com/watch?v=FfKGIHg5vU4",
+      image: "https://img.youtube.com/vi/FfKGIHg5vU4/maxresdefault.jpg",
+      connections: ["4"],
+      status: "in-progress",
+      progress: 60,
+      studyPlan: {
+        steps: [
+          {
+            stage: t.demo_node_2_step_1_stage,
+            focus: t.demo_node_2_step_1_focus,
+            action: t.demo_node_2_step_1_action,
+            estimatedTime: "4 h",
+            isCompleted: true
+          },
+          {
+            stage: t.demo_node_2_step_2_stage,
+            focus: t.demo_node_2_step_2_focus,
+            action: t.demo_node_2_step_2_action,
+            estimatedTime: "6 h",
+            isCompleted: true
+          },
+          {
+            stage: t.demo_node_2_step_3_stage,
+            focus: t.demo_node_2_step_3_focus,
+            action: t.demo_node_2_step_3_action,
+            estimatedTime: "8 h",
+            isCompleted: true
+          },
+          {
+            stage: t.demo_node_2_step_4_stage,
+            focus: t.demo_node_2_step_4_focus,
+            action: t.demo_node_2_step_4_action,
+            estimatedTime: "4 h",
+            isCompleted: false
+          },
+          {
+            stage: t.demo_node_2_step_5_stage,
+            focus: t.demo_node_2_step_5_focus,
+            action: t.demo_node_2_step_5_action,
+            estimatedTime: "4 h",
+            isCompleted: false
+          }
+        ]
+      },
+      x: 733.3400932584942,
+      y: 589.319696125259
+    },
+    {
+      id: "3",
+      title: t.demo_node_3_title,
+      type: "book",
+      description: t.demo_node_3_desc,
+      source: "Introduction to Flight by John D. Anderson Jr.",
+      link: "https://www.thriftbooks.com/w/introduction-to-flight_john-d-anderson-jr/334046/?srsltid=AfmBOoqLByo91ctnkyhECwmLgem7Cn1hT5sXY-TrzY_Zefw7Q0SYkmQB",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn4skdb0p8G7AUIHSTDf5U14zOIlnpHm9_gts5AFsOxGgXbzf9jhiD&usqp=CAE&s",
+      connections: ["4", "5"],
+      status: "in-progress",
+      progress: 40,
+      studyPlan: {
+        steps: [
+          {
+            stage: t.demo_node_3_step_1_stage,
+            focus: t.demo_node_3_step_1_focus,
+            action: t.demo_node_3_step_1_action,
+            estimatedTime: "3 d",
+            isCompleted: true
+          },
+          {
+            stage: t.demo_node_3_step_2_stage,
+            focus: t.demo_node_3_step_2_focus,
+            action: t.demo_node_3_step_2_action,
+            estimatedTime: "5 d",
+            isCompleted: true
+          },
+          {
+            stage: t.demo_node_3_step_3_stage,
+            focus: t.demo_node_3_step_3_focus,
+            action: t.demo_node_3_step_3_action,
+            estimatedTime: "4 d",
+            isCompleted: false
+          },
+          {
+            stage: t.demo_node_3_step_4_stage,
+            focus: t.demo_node_3_step_4_focus,
+            action: t.demo_node_3_step_4_action,
+            estimatedTime: "4 d",
+            isCompleted: false
+          },
+          {
+            stage: t.demo_node_3_step_5_stage,
+            focus: t.demo_node_3_step_5_focus,
+            action: t.demo_node_3_step_5_action,
+            estimatedTime: "2 d",
+            isCompleted: false
+          }
+        ]
+      },
+      x: 855.2909389394376,
+      y: 217.4369964176745
+    },
+    {
+      id: "4",
+      title: t.demo_node_4_title,
+      type: "video",
+      description: t.demo_node_4_desc,
+      source: "Introduction to Avionics Systems by R.P.G. Collinson",
+      link: "https://link.springer.com/book/10.1007/978-3-031-29215-6",
+      image: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=1000&auto=format&fit=crop",
+      connections: ["6"],
       status: "locked",
       progress: 0,
-      connections: [],
+      studyPlan: {
+        steps: []
+      },
+      x: 1103.3208356817702,
+      y: 701.2936967281973
     },
-  ],
+    {
+      id: "5",
+      title: t.demo_node_5_title,
+      type: "article",
+      description: t.demo_node_5_desc,
+      source: "Aviation Safety Management Systems by Tony Kern",
+      link: "https://www.scribd.com/document/381896161/Airmanship-Skills",
+      image: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=1000&auto=format&fit=crop",
+      connections: ["6"],
+      status: "locked",
+      progress: 0,
+      studyPlan: {
+        steps: []
+      },
+      x: 1321.9896302459297,
+      y: 221.91806382128198
+    },
+    {
+      id: "6",
+      title: t.demo_node_6_title,
+      type: "book",
+      description: t.demo_node_6_desc,
+      source: "Aircraft Propulsion by Saeed Farokhi",
+      link: "https://www.google.com/search?q=Modern%20Aircraft%20Propulsion%20Aircraft%20Propulsion%20by%20Saeed%20Farokhi%20learning%20link",
+      image: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=1000&auto=format&fit=crop",
+      connections: [],
+      status: "locked",
+      progress: 0,
+      studyPlan: {
+        steps: []
+      },
+      x: 1415.3320490268288,
+      y: 427.71582280211106
+    }
+  ]
 });

@@ -33,6 +33,7 @@ interface NodeDetailPanelProps {
   mapId: string;
   language?: Language;
   key?: string;
+  standalone?: boolean;
 }
 
 export const NodeDetailPanel = ({
@@ -43,6 +44,7 @@ export const NodeDetailPanel = ({
   onUpdate,
   mapId,
   language = "es",
+  standalone = false,
 }: NodeDetailPanelProps) => {
   const isDark = theme === "dark";
   const t = translations[language];
@@ -166,8 +168,8 @@ export const NodeDetailPanel = ({
 
   return (
     <div
-      className="absolute top-0 right-0 z-50 h-full pointer-events-none"
-      style={{ width: 540 }}
+      className={standalone ? "relative z-50 w-full pointer-events-none" : "absolute top-0 right-0 z-50 h-full pointer-events-none"}
+      style={{ width: standalone ? "100%" : 540 }}
     >
       <motion.div
         initial={{ opacity: 0, x: 40, scale: 1 }}
@@ -180,8 +182,8 @@ export const NodeDetailPanel = ({
         transition={{ type: "spring", damping: 28, stiffness: 220 }}
         className="glass-panel pointer-events-auto h-full relative overflow-hidden flex flex-col"
         style={{
-          margin: "12px",
-          width: 516,
+          margin: standalone ? "0 auto" : "12px",
+          width: standalone ? "100%" : 516,
           padding: "2rem",
           borderRadius: "var(--radius-lg)",
           boxShadow: isDark
@@ -191,6 +193,7 @@ export const NodeDetailPanel = ({
             ? "1px solid rgba(255,255,255,0.05)"
             : "1px solid rgba(0,100,123,0.05)",
           overflowY: "auto",
+          textAlign: "left",
         }}
       >
         <div
@@ -795,14 +798,17 @@ export const NodeDetailPanel = ({
               }
             }}
             disabled={showLocked}
-            className={showLocked ? "btn-secondary" : "btn-primary"}
+            className={`btn-base btn-md ${showLocked ? "btn-secondary" : "btn-primary"}`}
             style={{
               width: "100%",
               position: "relative",
               zIndex: 1,
               cursor: showLocked ? "not-allowed" : "pointer",
-              opacity: showLocked ? 0.5 : 1,
-              gap: 10,
+              opacity: showLocked ? 0.8 : 1,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px",
               transition: "all 0.2s",
             }}
           >

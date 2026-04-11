@@ -104,6 +104,7 @@ export const Methodology = ({ translations: t }: MethodologyProps) => {
               border: "1px solid var(--surface-container-highest)",
               display: "flex",
               flexDirection: "column",
+              alignItems: "center",
               height: "100%",
             }}
           >
@@ -121,7 +122,7 @@ export const Methodology = ({ translations: t }: MethodologyProps) => {
                 boxShadow: `0 8px 20px rgba(0,0,0,0.1)`,
               }}
             >
-              <f.icon size={26} />
+              <f.icon size={35} />
             </div>
             <div>
               <h4

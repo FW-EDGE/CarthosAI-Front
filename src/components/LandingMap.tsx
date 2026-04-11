@@ -57,7 +57,7 @@ interface Link extends d3.SimulationLinkDatum<Node> {
   target: Node;
 }
 
-interface FuturisticMapProps {
+interface LandingMapProps {
   path: LearningPath;
   theme?: "light" | "dark";
   readOnly?: boolean;
@@ -67,7 +67,7 @@ interface FuturisticMapProps {
   disableZoom?: boolean;
 }
 
-export const FuturisticMap = ({
+export const LandingMap = ({
   path,
   theme = "light",
   readOnly = false,
@@ -75,7 +75,7 @@ export const FuturisticMap = ({
   onDragEnd,
   language = "es",
   disableZoom = false,
-}: FuturisticMapProps) => {
+}: LandingMapProps) => {
   const t = translations[language];
   const completedNodes = path.nodes.filter(
     (n) => n.status === "completed",
@@ -763,17 +763,41 @@ export const FuturisticMap = ({
       linkElements.style("opacity", 1);
     }
 
+    // Calculate bounding box and auto-fit map
+    if (nodes.length > 0) {
+      const xMin = d3.min(nodes, d => d.targetX!) || 0;
+      const xMax = d3.max(nodes, d => d.targetX!) || 0;
+      const yMin = d3.min(nodes, d => d.targetY!) || 0;
+      const yMax = d3.max(nodes, d => d.targetY!) || 0;
+
+      const dx = Math.max(xMax - xMin, 1);
+      const dy = Math.max(yMax - yMin, 1);
+      const cx = (xMin + xMax) / 2;
+      const cy = (yMin + yMax) / 2;
+
+      // Scale to fit 85% of container
+      const scale = Math.max(0.1, Math.min(1.5, 0.85 / Math.max(dx / width, dy / height)));
+      const tx = width / 2 - scale * cx;
+      const ty = height / 2 - scale * cy;
+
+      const initialTransform = d3.zoomIdentity.translate(tx, ty).scale(scale);
+      currentTransform = initialTransform;
+      transformRef.current = initialTransform;
+      g.attr("transform", initialTransform as any);
+    }
+
     // Zoom behavior
     if (!disableZoom) {
       const zoom = d3
         .zoom<SVGSVGElement, unknown>()
-        .scaleExtent([0.5, 2])
+        .scaleExtent([0.1, 3])
         .on("zoom", (event) => {
           currentTransform = event.transform;
           transformRef.current = event.transform;
           g.attr("transform", event.transform);
         });
       svg.call(zoom);
+      svg.call(zoom.transform, currentTransform);
     }
 
     return () => {

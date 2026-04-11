@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { Network, LayoutGrid, Activity } from "lucide-react";
-import { FuturisticMap } from "../../components/FuturisticMap";
+import { LandingMap } from "../../components/LandingMap";
 import { LearningPath } from "../../types";
 
 interface AtlasProps {
@@ -159,7 +159,13 @@ export const Atlas = ({
               boxShadow: "0 40px 100px rgba(0,0,0,0.15)",
             }}
           >
-            <FuturisticMap path={demoPath} theme={theme} readOnly disableZoom />
+            <LandingMap
+              path={demoPath}
+              theme={theme}
+              readOnly
+              disableZoom
+              language={t.nav_map === "Mapa" ? "es" : "en"}
+            />
 
             {/* Overlay Badge */}
             <div
