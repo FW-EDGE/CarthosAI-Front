@@ -1,0 +1,34 @@
+/* Shared nav structure (.site-header, .site-nav, .nav-logo, .nav-links-pill, .nav-link-btn, .nav-controls) → index.css */
+
+.nav-mobile-link {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--on-surface-var);
+}
+
+.mobile-drawer-links {
+  gap: 2rem;
+}
+
+.mobile-drawer-bottom {
+  margin-top: auto;
+}
+
+.mobile-lang-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.landing-nav-btn {
+  height: 40px;
+  padding: 0 1rem;
+  border-radius: 12px;
+}

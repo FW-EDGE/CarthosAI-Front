@@ -1,0 +1,59 @@
+.tracking-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .tracking-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+.tracking-features-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.tracking-feature-item {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.tracking-feature-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+.tracking-feature-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--on-surface);
+  margin-bottom: 0.25rem;
+}
+
+.tracking-feature-desc {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--on-surface-var);
+  line-height: 1.5;
+}
+
+.tracking-tagline {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--primary);
+}

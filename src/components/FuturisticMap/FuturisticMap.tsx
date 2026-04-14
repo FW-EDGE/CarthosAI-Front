@@ -1,33 +1,17 @@
-import { useEffect, useRef, useState, useMemo } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
 import { motion, AnimatePresence } from "motion/react";
 import {
-  BookOpenCheck,
-  Info,
-  ExternalLink,
-  ChevronRight,
-  X,
   Layers,
-  Zap,
   LayoutGrid,
   Network,
-  EyeOff,
   Sparkles,
-  ScrollText,
   Dna,
-  Play,
-  Headphones,
-  BookOpen,
-  Clock,
-  Target,
   CheckCircle2,
-  Lock,
-  ArrowRight,
 } from "lucide-react";
-import { LearningNode, LearningPath } from "../types";
-import { cn } from "../lib/utils";
-import { translations, Language } from "../translations";
-import { NodeDetailPanel } from "./NodeDetailPanel";
+import { LearningNode, LearningPath } from "../../types/types";
+import { translations, Language } from "../../constants/translations";
+import { NodeDetailPanel } from "../NodeDetailPanel/NodeDetailPanel";
 
 type MapMode = "pathfinder" | "animus" | "neural" | "grid";
 
@@ -57,7 +41,7 @@ interface Link extends d3.SimulationLinkDatum<Node> {
   target: Node;
 }
 
-interface LandingMapProps {
+interface FuturisticMapProps {
   path: LearningPath;
   theme?: "light" | "dark";
   readOnly?: boolean;
@@ -67,7 +51,7 @@ interface LandingMapProps {
   disableZoom?: boolean;
 }
 
-export const LandingMap = ({
+export const FuturisticMap = ({
   path,
   theme = "light",
   readOnly = false,
@@ -75,7 +59,7 @@ export const LandingMap = ({
   onDragEnd,
   language = "es",
   disableZoom = false,
-}: LandingMapProps) => {
+}: FuturisticMapProps) => {
   const t = translations[language];
   const completedNodes = path.nodes.filter(
     (n) => n.status === "completed",
@@ -135,7 +119,7 @@ export const LandingMap = ({
   const pfFg = isDark ? "#e2e8f0" : "#2a2f32";
   const pfMuted = isDark ? "#64748b" : "#8a9199";
   const pfAccent = isDark ? "#00c3ed" : "#00647b";
-  const pfAccentDim = isDark ? "#00e5ff" : "#00c3ed";
+  const pfAccentDim = isDark ? "#00e5ff" : "#00647b";
   const pfPanelBg = isDark ? "rgba(15, 20, 22, 0.9)" : "rgba(255,255,255,0.92)";
 
   const modes = [
@@ -763,41 +747,17 @@ export const LandingMap = ({
       linkElements.style("opacity", 1);
     }
 
-    // Calculate bounding box and auto-fit map
-    if (nodes.length > 0) {
-      const xMin = d3.min(nodes, d => d.targetX!) || 0;
-      const xMax = d3.max(nodes, d => d.targetX!) || 0;
-      const yMin = d3.min(nodes, d => d.targetY!) || 0;
-      const yMax = d3.max(nodes, d => d.targetY!) || 0;
-
-      const dx = Math.max(xMax - xMin, 1);
-      const dy = Math.max(yMax - yMin, 1);
-      const cx = (xMin + xMax) / 2;
-      const cy = (yMin + yMax) / 2;
-
-      // Scale to fit 85% of container
-      const scale = Math.max(0.1, Math.min(1.5, 0.85 / Math.max(dx / width, dy / height)));
-      const tx = width / 2 - scale * cx;
-      const ty = height / 2 - scale * cy;
-
-      const initialTransform = d3.zoomIdentity.translate(tx, ty).scale(scale);
-      currentTransform = initialTransform;
-      transformRef.current = initialTransform;
-      g.attr("transform", initialTransform as any);
-    }
-
     // Zoom behavior
     if (!disableZoom) {
       const zoom = d3
         .zoom<SVGSVGElement, unknown>()
-        .scaleExtent([0.1, 3])
+        .scaleExtent([0.5, 2])
         .on("zoom", (event) => {
           currentTransform = event.transform;
           transformRef.current = event.transform;
           g.attr("transform", event.transform);
         });
       svg.call(zoom);
-      svg.call(zoom.transform, currentTransform);
     }
 
     return () => {
@@ -1021,7 +981,9 @@ export const LandingMap = ({
                 position: "absolute",
                 inset: 0,
                 zIndex: 40,
-                background: isDark ? "rgba(0,0,0,0.2)" : "rgba(255,255,255,0.05)",
+                background: isDark
+                  ? "rgba(0,0,0,0.2)"
+                  : "rgba(255,255,255,0.05)",
                 backdropFilter: "blur(2px)",
                 cursor: "pointer",
               }}

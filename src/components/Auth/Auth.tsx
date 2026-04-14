@@ -7,17 +7,21 @@ import {
   ArrowRight,
   Loader2,
   AlertCircle,
+  ArrowLeft,
 } from "lucide-react";
-import { translations, Language } from "../translations";
-import { Button } from "./ui/Button";
-import { authService } from "../services/api";
+import { translations, Language } from "../../constants/translations";
+import { Button } from "../ui/Button";
+import { authService } from "../../services/api";
+import "./Auth.css";
 
 export const Auth = ({
   onAuthSuccess,
+  onBack,
   initialMode = "register",
   language = "es",
 }: {
   onAuthSuccess: (mode: "login" | "register") => void;
+  onBack: () => void;
   initialMode?: "login" | "register";
   language?: Language;
 }) => {
@@ -54,6 +58,11 @@ export const Auth = ({
     <div className="landing-container flex items-center justify-center p-6">
       <div className="bg-ambience" />
       <div className="grid-overlay" />
+
+      <button onClick={onBack} className="auth-back-btn">
+        <ArrowLeft size={16} />
+        {language === "es" ? "Volver" : "Back"}
+      </button>
 
       <motion.div
         initial={{ opacity: 0, scale: 0.96, y: 10 }}
@@ -115,12 +124,15 @@ export const Auth = ({
               {t.auth_network_id}
             </label>
             <div className="relative">
-              <Mail size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--outline)]" />
+              <Mail
+                size={16}
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--outline)]"
+              />
               <input
                 type="email"
                 required
-                className="input-ethereal pl-[2.8rem]"
-                placeholder="user@aetheris.io"
+                className="input-ethereal auth-input-with-icon"
+                placeholder="user@carthosai.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -133,17 +145,23 @@ export const Auth = ({
                 {t.auth_passcode}
               </label>
               {isLogin && (
-                <button type="button" className="font-sans text-[0.75rem] font-bold text-[var(--primary)] hover:underline">
+                <button
+                  type="button"
+                  className="font-sans text-[0.75rem] font-bold text-[var(--primary)] hover:underline"
+                >
                   {t.auth_lost_key}
                 </button>
               )}
             </div>
             <div className="relative">
-              <Lock size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--outline)]" />
+              <Lock
+                size={16}
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--outline)]"
+              />
               <input
                 type="password"
                 required
-                className="input-ethereal pl-[2.8rem]"
+                className="input-ethereal auth-input-with-icon"
                 placeholder="••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}

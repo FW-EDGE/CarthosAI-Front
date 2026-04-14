@@ -1,11 +1,12 @@
-import { LandingNav } from "./layout/LandingNav";
+import { LandingNav } from "./LandingNav/LandingNav";
 import { LandingFooter } from "./layout/LandingFooter";
-import { Hero } from "../sections/landing/Hero";
-import { Methodology } from "../sections/landing/Methodology";
-import { Tracking } from "../sections/landing/Tracking";
-import { Atlas } from "../sections/landing/Atlas";
-import { CTA } from "../sections/landing/CTA";
-import { translations, Language } from "../translations";
+import { Hero } from "../sections/landing/Hero/Hero";
+import { Methodology } from "../sections/landing/Methodology/Methodology";
+import { Tracking } from "../sections/landing/Tracking/Tracking";
+import { Atlas } from "../sections/landing/Atlas/Atlas";
+import { CTA } from "../sections/landing/CTA/CTA";
+import { Pricing } from "../sections/landing/Pricing/Pricing";
+import { translations, Language } from "../constants/translations";
 import { getDemoPath } from "../utils/landingData";
 
 export const Landing = ({
@@ -33,7 +34,7 @@ export const Landing = ({
     <div className="landing-container selection:bg-[var(--primary-container)] selection:text-[var(--primary)]">
       {/* ── BACKGROUND AMBIENCE ── */}
       <div className="bg-ambience" />
-      
+
       {/* Grid Pattern overlay */}
       <div className="grid-overlay" />
 
@@ -67,6 +68,8 @@ export const Landing = ({
         translations={t}
         demoPath={DEMO_PATH}
       />
+
+      <Pricing onStart={onStart} translations={t} language={language} />
 
       <CTA onStart={onStart} translations={t} />
 

@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
-import { Button } from "../../components/ui/Button";
+import { Button } from "../../../components/ui/Button";
+import "./CTA.css";
 
 interface CTAProps {
   onStart: () => void;
@@ -23,7 +24,7 @@ export const CTA = ({ onStart, translations: t }: CTAProps) => {
             variant="primary"
             size="lg"
             className="cta-button"
-            onClick={() => onStart()}
+            onClick={onStart}
           >
             {t.hero_cta}
           </Button>

@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { MapPin, ChevronDown, Plus } from "lucide-react";
-import { LearningPath } from "../types";
-import { translations, Language } from "../translations";
+import { LearningPath } from "../types/types";
+import { translations, Language } from "../constants/translations";
 import { Button } from "./ui/Button";
 
 interface MapSelectorBarProps {

@@ -1,0 +1,27 @@
+.auth-back-btn {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--on-surface-var);
+  z-index: 20;
+  padding: 0.4rem 0.6rem;
+  border-radius: 8px;
+  transition: color 0.15s;
+}
+
+.auth-back-btn:hover {
+  color: var(--on-surface);
+}
+
+.input-ethereal.auth-input-with-icon {
+  padding-left: 2.75rem;
+}

@@ -24,10 +24,11 @@ import {
   Lock,
   ArrowRight,
 } from "lucide-react";
-import { LearningNode, LearningPath } from "../types";
-import { cn } from "../lib/utils";
-import { translations, Language } from "../translations";
-import { NodeDetailPanel } from "./NodeDetailPanel";
+import { LearningNode, LearningPath } from "../../types/types";
+import { cn } from "../../lib/utils";
+import { translations, Language } from "../../constants/translations";
+import { NodeDetailPanel } from "../NodeDetailPanel/NodeDetailPanel";
+import "./LandingMap.css";
 
 type MapMode = "pathfinder" | "animus" | "neural" | "grid";
 
@@ -57,7 +58,7 @@ interface Link extends d3.SimulationLinkDatum<Node> {
   target: Node;
 }
 
-interface FuturisticMapProps {
+interface LandingMapProps {
   path: LearningPath;
   theme?: "light" | "dark";
   readOnly?: boolean;
@@ -67,7 +68,7 @@ interface FuturisticMapProps {
   disableZoom?: boolean;
 }
 
-export const FuturisticMap = ({
+export const LandingMap = ({
   path,
   theme = "light",
   readOnly = false,
@@ -75,7 +76,7 @@ export const FuturisticMap = ({
   onDragEnd,
   language = "es",
   disableZoom = false,
-}: FuturisticMapProps) => {
+}: LandingMapProps) => {
   const t = translations[language];
   const completedNodes = path.nodes.filter(
     (n) => n.status === "completed",
@@ -135,7 +136,7 @@ export const FuturisticMap = ({
   const pfFg = isDark ? "#e2e8f0" : "#2a2f32";
   const pfMuted = isDark ? "#64748b" : "#8a9199";
   const pfAccent = isDark ? "#00c3ed" : "#00647b";
-  const pfAccentDim = isDark ? "#00e5ff" : "#00c3ed";
+  const pfAccentDim = isDark ? "#00e5ff" : "#00647b";
   const pfPanelBg = isDark ? "rgba(15, 20, 22, 0.9)" : "rgba(255,255,255,0.92)";
 
   const modes = [
@@ -763,17 +764,44 @@ export const FuturisticMap = ({
       linkElements.style("opacity", 1);
     }
 
+    // Calculate bounding box and auto-fit map
+    if (nodes.length > 0) {
+      const xMin = d3.min(nodes, (d) => d.targetX!) || 0;
+      const xMax = d3.max(nodes, (d) => d.targetX!) || 0;
+      const yMin = d3.min(nodes, (d) => d.targetY!) || 0;
+      const yMax = d3.max(nodes, (d) => d.targetY!) || 0;
+
+      const dx = Math.max(xMax - xMin, 1);
+      const dy = Math.max(yMax - yMin, 1);
+      const cx = (xMin + xMax) / 2;
+      const cy = (yMin + yMax) / 2;
+
+      // Scale to fit 85% of container
+      const scale = Math.max(
+        0.1,
+        Math.min(1.5, 0.85 / Math.max(dx / width, dy / height)),
+      );
+      const tx = width / 2 - scale * cx;
+      const ty = height / 2 - scale * cy;
+
+      const initialTransform = d3.zoomIdentity.translate(tx, ty).scale(scale);
+      currentTransform = initialTransform;
+      transformRef.current = initialTransform;
+      g.attr("transform", initialTransform as any);
+    }
+
     // Zoom behavior
     if (!disableZoom) {
       const zoom = d3
         .zoom<SVGSVGElement, unknown>()
-        .scaleExtent([0.5, 2])
+        .scaleExtent([0.1, 3])
         .on("zoom", (event) => {
           currentTransform = event.transform;
           transformRef.current = event.transform;
           g.attr("transform", event.transform);
         });
       svg.call(zoom);
+      svg.call(zoom.transform, currentTransform);
     }
 
     return () => {
@@ -787,13 +815,7 @@ export const FuturisticMap = ({
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-full overflow-hidden"
-      style={{
-        backgroundColor: isDark ? "#0f1416" : pfBg,
-        backgroundImage: isDark
-          ? "radial-gradient(ellipse 70% 50% at 20% 15%, rgba(0,195,237,0.15) 0%, transparent 55%), radial-gradient(ellipse 55% 45% at 80% 85%, rgba(0,229,255,0.1) 0%, transparent 50%)"
-          : "radial-gradient(ellipse 70% 50% at 20% 15%, rgba(0,195,237,0.08) 0%, transparent 55%), radial-gradient(ellipse 55% 45% at 80% 85%, rgba(0,100,123,0.06) 0%, transparent 50%)",
-      }}
+      className={cn("landing-map-container", isDark && "dark")}
     >
       <canvas
         ref={canvasRef}
@@ -802,20 +824,8 @@ export const FuturisticMap = ({
       <svg ref={svgRef} className="absolute inset-0 w-full h-full" />
 
       {/* Progress Bar */}
-      <div className="absolute bottom-6 right-6 z-20" style={{ width: 140 }}>
-        <div
-          style={{
-            fontFamily: "Manrope, sans-serif",
-            fontSize: "0.6rem",
-            textTransform: "uppercase",
-            letterSpacing: "0.12em",
-            color: "var(--outline)",
-            marginBottom: 8,
-            textAlign: "right",
-          }}
-        >
-          {t.map_progress}
-        </div>
+      <div className="map-progress-container">
+        <div className="map-progress-label">{t.map_progress}</div>
         <div className="progress-track">
           <motion.div
             initial={{ width: 0 }}
@@ -824,38 +834,16 @@ export const FuturisticMap = ({
             className="progress-fill"
           />
         </div>
-        <div
-          style={{
-            fontFamily: "Manrope, sans-serif",
-            fontSize: "0.7rem",
-            fontWeight: 700,
-            color: "var(--primary)",
-            marginTop: 6,
-            textAlign: "right",
-          }}
-        >
-          {overallProgress}%
-        </div>
+        <div className="map-progress-pct">{overallProgress}%</div>
       </div>
 
       {/* Map Controls (Top Right) */}
-      <div className="absolute top-5 right-6 z-30 flex items-center gap-2">
+      <div className="map-controls">
         {!readOnly && (
           <div className="relative">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="glass-panel"
-              style={{
-                width: 38,
-                height: 38,
-                borderRadius: "50%",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "var(--primary)",
-                border: "none",
-                cursor: "pointer",
-              }}
+              className="glass-panel map-mode-btn"
               title="Map Mode"
             >
               <Layers size={16} />
@@ -867,16 +855,7 @@ export const FuturisticMap = ({
                   initial={{ opacity: 0, y: -8, scale: 0.96 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -8, scale: 0.96 }}
-                  className="glass-panel"
-                  style={{
-                    position: "absolute",
-                    top: "calc(100% + 8px)",
-                    right: 0,
-                    padding: "0.625rem",
-                    borderRadius: "var(--radius-lg)",
-                    width: 180,
-                    zIndex: 100,
-                  }}
+                  className="glass-panel map-mode-dropdown"
                 >
                   {modes.map((mode) => (
                     <button
@@ -886,47 +865,13 @@ export const FuturisticMap = ({
                         setIsMenuOpen(false);
                         setIsEditingMode(false);
                       }}
-                      style={{
-                        width: "100%",
-                        display: "flex",
-                        alignItems: "center",
-                        gap: 10,
-                        padding: "0.5rem 0.65rem",
-                        borderRadius: "var(--radius-md)",
-                        border: "none",
-                        cursor: "pointer",
-                        textAlign: "left",
-                        background:
-                          mapMode === mode.id
-                            ? "var(--primary-container)"
-                            : "transparent",
-                        transition: "background 0.2s ease",
-                      }}
+                      className={cn(
+                        "map-mode-item",
+                        mapMode === mode.id && "active",
+                      )}
                     >
-                      <mode.icon
-                        size={13}
-                        style={{
-                          color:
-                            mapMode === mode.id
-                              ? "var(--primary)"
-                              : "var(--outline)",
-                        }}
-                      />
-                      <span
-                        style={{
-                          fontFamily: "Manrope, sans-serif",
-                          fontSize: "0.72rem",
-                          textTransform: "uppercase",
-                          letterSpacing: "0.08em",
-                          fontWeight: 600,
-                          color:
-                            mapMode === mode.id
-                              ? "var(--primary)"
-                              : "var(--on-surface-var)",
-                        }}
-                      >
-                        {mode.label}
-                      </span>
+                      <mode.icon size={13} className="map-mode-item-icon" />
+                      <span className="map-mode-item-label">{mode.label}</span>
                     </button>
                   ))}
                 </motion.div>
@@ -939,22 +884,7 @@ export const FuturisticMap = ({
           (isEditingMode ? (
             <button
               onClick={handleSaveLayout}
-              className="glass-panel"
-              style={{
-                padding: "0.5rem 1.125rem",
-                borderRadius: "var(--radius-full)",
-                display: "flex",
-                alignItems: "center",
-                gap: 8,
-                color: "#fff",
-                background: "var(--primary)",
-                border: "none",
-                cursor: "pointer",
-                fontFamily: "Manrope, sans-serif",
-                fontSize: "0.75rem",
-                fontWeight: 700,
-                boxShadow: "0 8px 24px rgba(0, 195, 237, 0.3)",
-              }}
+              className="glass-panel map-save-btn"
             >
               <CheckCircle2 size={16} /> {t.map_save_layout}
             </button>
@@ -964,20 +894,7 @@ export const FuturisticMap = ({
                 setIsEditingMode(true);
                 setSelectedNodeId(null);
               }}
-              className="glass-panel"
-              style={{
-                padding: "0.5rem 1.125rem",
-                borderRadius: "var(--radius-full)",
-                display: "flex",
-                alignItems: "center",
-                gap: 8,
-                color: "var(--primary)",
-                border: "none",
-                cursor: "pointer",
-                fontFamily: "Manrope, sans-serif",
-                fontSize: "0.75rem",
-                fontWeight: 700,
-              }}
+              className="glass-panel map-edit-btn"
             >
               <LayoutGrid size={16} /> {t.map_edit_position}
             </button>
@@ -993,14 +910,12 @@ export const FuturisticMap = ({
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedNodeId(null)}
-              style={{
-                position: "absolute",
-                inset: 0,
-                zIndex: 40,
-                background: isDark ? "rgba(0,0,0,0.2)" : "rgba(255,255,255,0.05)",
-                backdropFilter: "blur(2px)",
-                cursor: "pointer",
-              }}
+              className={cn(
+                "map-detail-backdrop",
+                isDark
+                  ? "map-detail-backdrop--dark"
+                  : "map-detail-backdrop--light",
+              )}
             />
             <NodeDetailPanel
               key={selectedNode.id}
@@ -1023,30 +938,9 @@ export const FuturisticMap = ({
             initial={{ opacity: 0, scale: 0.9, y: 4 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 4 }}
-            className="glass-pill-nav"
-            style={{
-              position: "absolute",
-              bottom: 48,
-              left: "50%",
-              transform: "translateX(-50%)",
-              padding: "0.375rem 1rem",
-              borderRadius: "var(--radius-full)",
-              zIndex: 30,
-              pointerEvents: "none",
-            }}
+            className="glass-pill-nav map-hover-tooltip"
           >
-            <span
-              style={{
-                fontFamily: "Manrope, sans-serif",
-                fontSize: "0.7rem",
-                fontWeight: 600,
-                color: "var(--on-surface)",
-                textTransform: "uppercase",
-                letterSpacing: "0.1em",
-              }}
-            >
-              {hoveredNode.title}
-            </span>
+            <span className="map-hover-tooltip-text">{hoveredNode.title}</span>
           </motion.div>
         )}
       </AnimatePresence>

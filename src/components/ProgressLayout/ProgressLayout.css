@@ -1,0 +1,473 @@
+/* ── Empty State ──────────────────────────────────────────── */
+.progress-empty {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.progress-empty-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--primary-container);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+}
+
+.progress-empty-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 2rem;
+  color: var(--on-surface);
+  letter-spacing: -0.03em;
+}
+
+.progress-empty-desc {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  color: var(--on-surface-var);
+  max-width: 380px;
+}
+
+.progress-empty-btn {
+  border-radius: 100px;
+  padding: 0.875rem 2.5rem;
+}
+
+/* ── Header ───────────────────────────────────────────────── */
+.progress-header-badge-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    var(--primary) 0%,
+    var(--primary-fixed) 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.progress-section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.875rem;
+  border-radius: 100px;
+  backdrop-filter: blur(12px);
+  margin-bottom: 0.625rem;
+  border: 1px solid var(--outline-variant);
+  background: var(--surface-container-low);
+  box-shadow: var(--shadow-float);
+  width: fit-content;
+  font-size: 0.65rem;
+}
+
+.progress-dash-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--on-surface);
+  margin-bottom: 0.25rem;
+}
+
+/* Neutraliza el margin-bottom global de section-description dentro del header */
+.dash-header .section-description {
+  margin-bottom: 0;
+}
+
+/* ── Column wrappers ──────────────────────────────────────── */
+.progress-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* ── Chart card ───────────────────────────────────────────── */
+.progress-chart-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.progress-chart-body {
+  height: 200px;
+}
+
+.progress-chart-empty {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--on-surface-var);
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+}
+
+/* ── Two-col row (Quest + Syncs) ──────────────────────────── */
+.progress-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 1.25rem;
+}
+
+/* ── Next Quest card ──────────────────────────────────────── */
+.progress-quest-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.progress-quest-header {
+  padding: 1.25rem 1.5rem 0;
+}
+
+.progress-quest-header-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.progress-quest-header-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-title-md);
+  color: var(--on-surface);
+}
+
+.progress-quest-scene {
+  position: relative;
+  height: 160px;
+  background: linear-gradient(135deg, #0a1628 0%, #0f2744 60%, #1a1a2e 100%);
+  margin: 0 1px;
+}
+
+.progress-quest-scene-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 30% 50%,
+    rgba(0, 195, 237, 0.15) 0%,
+    transparent 60%
+  );
+}
+
+.progress-quest-scene-content {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+}
+
+.progress-quest-type {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.55);
+  text-transform: capitalize;
+}
+
+.progress-quest-empty-text {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.progress-quest-cta {
+  padding: 1rem 1.5rem 1.5rem;
+}
+
+.progress-quest-btn {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 0.875rem;
+}
+
+/* ── Recent Syncs ─────────────────────────────────────────── */
+.progress-syncs-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-title-md);
+  color: var(--on-surface);
+  margin-bottom: 1.25rem;
+}
+
+.progress-syncs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.progress-sync-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.progress-sync-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(16, 185, 129, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #10b981;
+}
+
+.progress-sync-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.progress-sync-title {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: var(--text-body-md);
+  color: var(--on-surface);
+  margin-bottom: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.progress-sync-subtitle {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  color: var(--on-surface-var);
+}
+
+.progress-sync-right {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.progress-sync-status {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--text-body-md);
+  color: #10b981;
+}
+
+.progress-sync-type {
+  font-family: var(--font-sans);
+  font-size: 0.6rem;
+  text-transform: capitalize;
+  letter-spacing: 0.1em;
+  color: var(--on-surface-var);
+}
+
+.progress-syncs-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.5rem 0;
+  color: var(--on-surface-var);
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  text-align: center;
+}
+
+/* ── Active Node card ─────────────────────────────────────── */
+.progress-active-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+.progress-active-label {
+  font-family: var(--font-sans);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--on-surface-var);
+}
+
+.progress-active-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background: rgba(245, 158, 11, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  color: #f59e0b;
+}
+
+.progress-active-map {
+  font-family: var(--font-sans);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--on-surface-var);
+  margin-bottom: 4px;
+}
+
+.progress-active-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-title-md);
+  color: var(--on-surface);
+  margin-bottom: 0.875rem;
+}
+
+.progress-active-progress-track {
+  margin-bottom: 0.5rem;
+}
+
+.progress-active-progress-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.progress-active-progress-label {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  color: var(--on-surface-var);
+}
+
+.progress-active-progress-pct {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--on-surface-var);
+}
+
+.progress-active-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 0;
+  color: var(--on-surface-var);
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  text-align: center;
+}
+
+/* ── Deep State card ──────────────────────────────────────── */
+.progress-deep-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.progress-deep-label {
+  font-family: var(--font-sans);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--on-surface-var);
+  margin-bottom: 6px;
+}
+
+.progress-deep-value {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-title-lg);
+  color: var(--on-surface);
+}
+
+.progress-deep-subtitle {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  color: var(--on-surface-var);
+  margin-top: 2px;
+}
+
+.progress-deep-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 2px solid var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  background: var(--primary-container);
+  flex-shrink: 0;
+}
+
+/* ── Distribution card ────────────────────────────────────── */
+.progress-dist-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-title-md);
+  color: var(--on-surface);
+  margin-bottom: 1.25rem;
+}
+
+.progress-dist-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.progress-dist-row-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.progress-dist-map-name {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  color: var(--on-surface-var);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 70%;
+}
+
+.progress-dist-map-pct {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--on-surface);
+}
+
+.progress-dist-bar {
+  height: 100%;
+  border-radius: 9999px;
+}
+
+.progress-dist-empty {
+  color: var(--on-surface-var);
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+/* ── Live dot ────────────────────────────────────────────── */
+.progress-live-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: var(--primary-fixed);
+  border-radius: 50%;
+  position: relative;
+}
+
+.progress-live-dot::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 2px solid var(--primary-fixed);
+  animation: pulse-ring 1.8s ease-out infinite;
+}

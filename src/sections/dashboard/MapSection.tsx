@@ -1,10 +1,10 @@
 import React from "react";
 import { Loader2, Plus } from "lucide-react";
 import { motion } from "motion/react";
-import { LearningPath, LearningNode } from "../types";
-import { MapSelectorBar } from "../components/MapSelectorBar";
-import { FuturisticMap } from "../components/FuturisticMap";
-import { Language } from "../translations";
+import { LearningPath, LearningNode } from "../../types/types";
+import { MapSelectorBar } from "../../components/MapSelectorBar";
+import { FuturisticMap } from "../../components/FuturisticMap/FuturisticMap";
+import { Language } from "../../constants/translations";
 
 interface MapSectionProps {
   learningPaths: LearningPath[];
@@ -38,7 +38,7 @@ export const MapSection = ({
       style={{
         height: "calc(100vh - 113px)",
         position: "relative",
-        overflow: "hidden"
+        overflow: "hidden",
       }}
     >
       <MapSelectorBar
@@ -50,13 +50,26 @@ export const MapSection = ({
       />
 
       {loading ? (
-        <div style={{ height: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
-          <Loader2 size={32} style={{ color: "var(--primary)", animation: "spin 1s linear infinite" }} />
+        <div
+          style={{
+            height: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Loader2
+            size={32}
+            style={{
+              color: "var(--primary)",
+              animation: "spin 1s linear infinite",
+            }}
+          />
         </div>
       ) : activePath ? (
         <div key={activePath.id} style={{ height: "100%" }}>
-          <FuturisticMap 
-            path={activePath} 
+          <FuturisticMap
+            path={activePath}
             theme={theme}
             onNodeUpdate={onNodeUpdate}
             onDragEnd={onDragEnd}
@@ -64,18 +77,35 @@ export const MapSection = ({
           />
         </div>
       ) : (
-        <div style={{
-          height: "100%", display: "flex", flexDirection: "column",
-          alignItems: "center", justifyContent: "center",
-          gap: "1.5rem",
-        }}>
-          <div style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: "2rem", color: "var(--surface-container-high)", letterSpacing: "-0.03em" }}>
+        <div
+          style={{
+            height: "100%",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "1.5rem",
+          }}
+        >
+          <div
+            style={{
+              fontFamily: "var(--font-display)",
+              fontWeight: 800,
+              fontSize: "2rem",
+              color: "var(--surface-container-high)",
+              letterSpacing: "-0.03em",
+            }}
+          >
             No maps yet
           </div>
           <button
             onClick={onNewMap}
             className="btn-primary"
-            style={{ borderRadius: "100px", padding: "1rem 2.5rem", fontSize: "1rem" }}
+            style={{
+              borderRadius: "100px",
+              padding: "1rem 2.5rem",
+              fontSize: "1rem",
+            }}
           >
             <Plus size={18} /> Create your first map
           </button>

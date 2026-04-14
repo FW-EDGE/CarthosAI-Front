@@ -1,4 +1,4 @@
-import { LearningPath, OnboardingData } from "../types";
+import { LearningPath, OnboardingData } from "../types/types";
 
 const API_BASE = import.meta.env.VITE_BACKEND_API_URL;
 
@@ -20,6 +20,7 @@ export const authService = {
     });
     const data = await res.json();
     if (!res.ok || !data.ok) throw new Error(data.msg || "Login failed");
+    if (data.tier) localStorage.setItem("carthos_tier", data.tier);
     return data;
   },
 
@@ -31,6 +32,7 @@ export const authService = {
     });
     const data = await res.json();
     if (!res.ok || !data.ok) throw new Error(data.msg || "Registration failed");
+    if (data.tier) localStorage.setItem("carthos_tier", data.tier);
     return data;
   },
 };
@@ -41,7 +43,7 @@ export const learningService = {
   async generatePath(data: OnboardingData, language: string = "es") {
     const response = await fetch(`${API_BASE}/api/learning/generate-path`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: authService.getHeaders(),
       body: JSON.stringify({ ...data, language }),
     });
     const json = await response.json();
@@ -55,7 +57,7 @@ export const learningService = {
       `${API_BASE}/api/learning/generate-node-plan`,
       {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: authService.getHeaders(),
         body: JSON.stringify({ node, mapId, language }),
       },
     );
@@ -140,5 +142,30 @@ export const mapService = {
     const data = await res.json();
     if (!res.ok || !data.ok) throw new Error(data.msg || "Error updating map");
     return toPath(data.planificacion);
+  },
+
+  async delete(pathId: string): Promise<void> {
+    const res = await fetch(`${API_BASE}/api/planificaciones/${pathId}`, {
+      method: "DELETE",
+      headers: authService.getHeaders(),
+    });
+    const data = await res.json();
+    if (!res.ok || !data.ok) throw new Error(data.msg || "Error deleting map");
+  },
+};
+
+// ── BILLING SERVICE ────────────────────────────────────────────
+
+export const billingService = {
+  async createCheckoutSession(plan: "pro" | "premium"): Promise<string> {
+    const res = await fetch(`${API_BASE}/api/billing/create-checkout-session`, {
+      method: "POST",
+      headers: authService.getHeaders(),
+      body: JSON.stringify({ plan }),
+    });
+    const data = await res.json();
+    if (!res.ok || !data.ok)
+      throw new Error(data.msg || "Error creating checkout session");
+    return data.url;
   },
 };

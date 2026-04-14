@@ -1,22 +1,26 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Loader2, Plus } from "lucide-react";
-import { LearningPath, OnboardingData } from "./types";
-import { authService, learningService, mapService } from "./services/api";
-import { FuturisticMap } from "./components/FuturisticMap";
+import { LearningPath, OnboardingData } from "./types/types";
+import { learningService, mapService } from "./services/api";
+
+type Tier = "free" | "pro" | "premium";
+const TIER_MAP_LIMITS: Record<Tier, number> = {
+  free: 1,
+  pro: 5,
+  premium: Infinity,
+};
 import { Landing } from "./components/Landing";
-import { Auth } from "./components/Auth";
-import { TopNav } from "./components/TopNav";
+import { Auth } from "./components/Auth/Auth";
+import { TopNav } from "./components/TopNav/TopNav";
 import { Onboarding } from "./components/Onboarding";
-import { StellarProgress } from "./components/StellarProgress";
-import { MapSelectorBar } from "./components/MapSelectorBar";
-import { GenerationLoader } from "./components/GenerationLoader";
+import { GenerationLoader } from "./components/GenerationLoader/GenerationLoader";
+import { UpgradeModal } from "./components/UpgradeModal/UpgradeModal";
 
 // Sections
-import { MapSection } from "./sections/MapSection";
-import { ProgressSection } from "./sections/ProgressSection";
-import { NodesSection } from "./sections/NodesSection";
-import { VaultSection } from "./sections/VaultSection";
+import { MapSection } from "./sections/dashboard/MapSection";
+import { ProgressSection } from "./sections/dashboard/ProgressSection";
+import { NodesSection } from "./sections/dashboard/NodesSection";
+import { VaultSection } from "./sections/dashboard/VaultSection";
 
 // ─── MAIN APP ─────────────────────────────────────────────────
 
@@ -62,6 +66,10 @@ export default function App() {
   const [activePath, setActivePath] = useState<LearningPath | null>(null);
   const [mapsLoading, setMapsLoading] = useState(false);
   const [isGeneratingMap, setIsGeneratingMap] = useState(false);
+  const [tier, setTier] = useState<Tier>(
+    () => (localStorage.getItem("carthos_tier") as Tier) || "free",
+  );
+  const [showUpgradeModal, setShowUpgradeModal] = useState(false);
 
   // Load maps from DB for the logged-in user
   const loadMapsFromDB = async () => {
@@ -102,9 +110,11 @@ export default function App() {
     localStorage.removeItem("carthos_token");
     localStorage.removeItem("carthos_user_name");
     localStorage.removeItem("carthos_session_ts");
+    localStorage.removeItem("carthos_tier");
     setLearningPaths([]);
     setActivePath(null);
     setUserName("");
+    setTier("free");
     setScreen("landing");
   };
 
@@ -206,6 +216,7 @@ export default function App() {
       <Auth
         initialMode={authMode}
         onAuthSuccess={handleAuthSuccess}
+        onBack={() => setScreen("landing")}
         language={language}
       />
     );
@@ -215,7 +226,11 @@ export default function App() {
     return (
       <>
         {isGeneratingMap && <GenerationLoader language={language} />}
-        <Onboarding onComplete={handleOnboardingComplete} language={language} />
+        <Onboarding
+          onComplete={handleOnboardingComplete}
+          language={language}
+          tier={tier}
+        />
       </>
     );
   }
@@ -235,10 +250,12 @@ export default function App() {
         setActiveTab={setActiveTab}
         onLogout={handleLogout}
         userName={userName}
+        tier={tier}
         theme={theme}
         setTheme={setTheme}
         language={language}
         setLanguage={setLanguage}
+        onUpgrade={() => setShowUpgradeModal(true)}
       />
 
       <main style={{ flex: 1, overflow: "hidden auto" }}>
@@ -251,7 +268,13 @@ export default function App() {
               loading={mapsLoading}
               theme={theme}
               language={language}
-              onNewMap={() => setScreen("onboarding")}
+              onNewMap={() => {
+                if (learningPaths.length >= TIER_MAP_LIMITS[tier]) {
+                  setShowUpgradeModal(true);
+                } else {
+                  setScreen("onboarding");
+                }
+              }}
               onNodeUpdate={handleNodeUpdate}
               onDragEnd={handleDragEnd}
             />
@@ -266,11 +289,27 @@ export default function App() {
           )}
 
           {activeTab === "nodes" && (
-            <NodesSection learningPaths={learningPaths} language={language} />
+            <NodesSection
+              learningPaths={learningPaths}
+              language={language}
+              onNavigateToNode={(pathId) => {
+                const path = learningPaths.find((p) => p.id === pathId);
+                if (path) setActivePath(path);
+                setActiveTab("map");
+              }}
+            />
           )}
 
           {activeTab === "vault" && (
-            <VaultSection learningPaths={learningPaths} language={language} />
+            <VaultSection
+              learningPaths={learningPaths}
+              language={language}
+              onNavigateToMap={(pathId) => {
+                const path = learningPaths.find((p) => p.id === pathId);
+                if (path) setActivePath(path);
+                setActiveTab("map");
+              }}
+            />
           )}
 
           {activeTab === "settings" && (
@@ -295,6 +334,14 @@ export default function App() {
           )}
         </AnimatePresence>
       </main>
+
+      {showUpgradeModal && (
+        <UpgradeModal
+          currentTier={tier}
+          language={language}
+          onClose={() => setShowUpgradeModal(false)}
+        />
+      )}
     </div>
   );
 }

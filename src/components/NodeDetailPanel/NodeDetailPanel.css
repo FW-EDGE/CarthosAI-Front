@@ -1,0 +1,438 @@
+/* ── Panel shell ──────────────────────────────────────────── */
+.ndp-panel {
+  margin: 12px;
+  width: 516px;
+  box-shadow: 0 20px 80px rgba(0, 100, 123, 0.15);
+}
+
+.dark .ndp-panel {
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6);
+}
+
+/* ── Glow orb ─────────────────────────────────────────────── */
+.ndp-glow {
+  background: radial-gradient(circle, rgba(0, 195, 237, 0.12) 0%, transparent 70%);
+}
+
+.dark .ndp-glow {
+  background: radial-gradient(circle, rgba(0, 195, 237, 0.08) 0%, transparent 70%);
+}
+
+/* ── Node image ───────────────────────────────────────────── */
+.ndp-image {
+  width: calc(100% + 4rem);
+  height: 180px;
+  min-height: 180px;
+  margin: -2rem -2rem 1.5rem -2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.ndp-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ndp-image-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.9), transparent);
+}
+
+.dark .ndp-image-fade {
+  background: linear-gradient(to top, rgba(15, 20, 22, 0.95), transparent);
+}
+
+/* ── Header row ───────────────────────────────────────────── */
+.ndp-header-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+}
+
+.ndp-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: var(--primary-container);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  box-shadow: 0 4px 12px rgba(0, 100, 123, 0.08);
+  flex-shrink: 0;
+}
+
+.ndp-type-label {
+  font-family: Manrope, sans-serif;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--on-surface-var);
+  margin-bottom: 3px;
+}
+
+.ndp-source {
+  font-family: Manrope, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--on-surface);
+}
+
+.ndp-close {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: var(--surface-container);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--on-surface-var);
+  transition: background 0.2s ease;
+  flex-shrink: 0;
+}
+
+.ndp-close:hover {
+  background: var(--surface-container-high);
+}
+
+/* ── Title & description ──────────────────────────────────── */
+.ndp-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--on-surface);
+  margin-bottom: 0.75rem;
+  line-height: 1.25;
+  position: relative;
+  z-index: 1;
+  letter-spacing: -0.01em;
+}
+
+.ndp-desc {
+  font-family: Manrope, sans-serif;
+  font-size: 0.82rem;
+  color: var(--on-surface-var);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Link ─────────────────────────────────────────────────── */
+.ndp-link-wrapper {
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.ndp-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.625rem 0.875rem;
+  background: rgba(0, 100, 123, 0.04);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--outline-variant);
+  color: var(--primary);
+  text-decoration: none;
+  font-family: Manrope, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.ndp-link:hover {
+  background: rgba(0, 100, 123, 0.08);
+}
+
+.ndp-link-text {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Meta grid ────────────────────────────────────────────── */
+.ndp-meta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  position: relative;
+  z-index: 1;
+}
+
+.ndp-meta-card {
+  padding: 0.75rem;
+  border-radius: var(--radius-md);
+  background: var(--surface-container-low);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ndp-meta-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: Manrope, sans-serif;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--outline);
+}
+
+.ndp-meta-value {
+  font-family: Manrope, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--on-surface);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+
+/* ── Progress bar ─────────────────────────────────────────── */
+.ndp-progress-wrapper {
+  margin-bottom: 1.25rem;
+  position: relative;
+  z-index: 1;
+}
+
+.ndp-progress-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--outline);
+  text-transform: uppercase;
+}
+
+.ndp-progress-pct {
+  color: var(--primary);
+}
+
+.ndp-progress-track {
+  height: 6px;
+  width: 100%;
+  background: var(--surface-container-low);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.ndp-progress-fill {
+  height: 100%;
+  background: var(--primary);
+  box-shadow: 0 0 10px rgba(0, 195, 237, 0.4);
+}
+
+/* ── Study plan ───────────────────────────────────────────── */
+.ndp-plan-wrapper {
+  margin-bottom: 1.5rem;
+  border-top: 1px solid var(--outline-variant);
+  padding-top: 1.25rem;
+}
+
+.ndp-plan-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1rem;
+}
+
+.ndp-plan-label {
+  font-family: Manrope, sans-serif;
+  font-weight: 800;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--on-surface);
+}
+
+.ndp-steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.ndp-step {
+  position: relative;
+  padding-left: 1.75rem;
+}
+
+.ndp-step-checkbox {
+  position: absolute;
+  left: -2px;
+  top: 4px;
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  border: 2px solid var(--outline-variant);
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: none;
+}
+
+.ndp-step-checkbox.checked {
+  border: none;
+  background: var(--primary);
+  box-shadow: 0 4px 12px rgba(0, 195, 237, 0.3);
+}
+
+.ndp-step-title {
+  font-family: Manrope, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--on-surface);
+  margin-bottom: 2px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.ndp-step-title.completed {
+  color: var(--outline);
+  text-decoration: line-through;
+}
+
+.ndp-step-action {
+  font-family: Manrope, sans-serif;
+  font-size: 0.72rem;
+  color: var(--on-surface-var);
+  margin-bottom: 4px;
+}
+
+.ndp-step-action.completed {
+  opacity: 0.6;
+}
+
+.ndp-step-action-keyword {
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.ndp-step-action-keyword.completed {
+  color: var(--outline);
+}
+
+.ndp-step-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ndp-step-focus {
+  font-size: 0.65rem;
+  color: var(--outline);
+  font-style: italic;
+}
+
+.ndp-step-time {
+  font-size: 0.6rem;
+  font-weight: 800;
+  color: var(--on-surface-var);
+  background: var(--surface-container-high);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.ndp-step-time.completed {
+  color: var(--outline);
+}
+
+.dark .ndp-step-time {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* ── Loading spinner ──────────────────────────────────────── */
+.ndp-loading {
+  padding: 1.5rem 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.ndp-loading-text {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--outline);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ── Manual progress ──────────────────────────────────────── */
+.ndp-manual-box {
+  padding: 1rem;
+  background: var(--surface-container-low);
+  border-radius: var(--radius-md);
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+  border: 1px solid var(--primary-var);
+}
+
+.ndp-manual-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.ndp-manual-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--on-surface-var);
+  text-transform: uppercase;
+}
+
+.ndp-manual-pct {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.ndp-range {
+  width: 100%;
+  accent-color: var(--primary);
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.ndp-manual-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.ndp-done-btn {
+  flex: 1;
+  font-size: 0.75rem;
+  height: auto;
+  padding: 0.6rem 1.2rem;
+  border-radius: 100px;
+}
+
+/* ── Start / Lock button ──────────────────────────────────── */
+.ndp-start-btn {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.2s;
+}

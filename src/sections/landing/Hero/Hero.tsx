@@ -1,8 +1,9 @@
 import { motion } from "motion/react";
 import { Fingerprint, MapPin, Zap } from "lucide-react";
-import { Button } from "../../components/ui/Button";
-import { LandingMap } from "../../components/LandingMap";
-import { LearningPath } from "../../types";
+import { Button } from "../../../components/ui/Button";
+import { LandingMap } from "../../../components/LandingMap/LandingMap";
+import { LearningPath } from "../../../types/types";
+import "./Hero.css";
 
 interface HeroProps {
   onStart: () => void;
@@ -30,9 +31,7 @@ export const Hero = ({
         className="hero-tagline-badge"
       >
         <Fingerprint size={14} className="text-primary-fixed" />
-        <span className="hero-tagline">
-          {t.landing_tagline}
-        </span>
+        <span className="hero-tagline">{t.landing_tagline}</span>
       </motion.div>
 
       <motion.h2
@@ -43,9 +42,7 @@ export const Hero = ({
       >
         {t.hero_title_1} {t.hero_title_2}
         <br />
-        <span className="text-gradient">
-          {t.hero_title_3}
-        </span>
+        <span className="text-gradient">{t.hero_title_3}</span>
       </motion.h2>
 
       <motion.p
@@ -101,20 +98,13 @@ export const Hero = ({
           </div>
 
           <div className="flex flex-col absolute top-5 left-5 z-20 pointer-events-none gap-3">
-            <div className="hero-map-badge bg-[var(--surface-container-low)] border-[var(--outline-variant)]">
+            <div className="hero-map-badge bg-[var(--surface-container-low)]">
               <span className="live-dot" />
-              <span className="hero-map-badge-text">
-                {t.demo_label}
-              </span>
+              <span className="hero-map-badge-text">{t.demo_label}</span>
             </div>
-
-            <div className="mobile-hide hero-map-card glass-panel shadow-lg border-[var(--outline-variant)]">
-              <div className="hero-map-card-title mb-1">
-                {demoPath.name}
-              </div>
-              <div className="hero-map-card-desc">
-                {demoPath.description}
-              </div>
+            <div className="mobile-hide hero-map-card glass-panel shadow-lg">
+              <div className="hero-map-card-title mb-1">{demoPath.name}</div>
+              <div className="hero-map-card-desc">{demoPath.description}</div>
             </div>
           </div>
         </div>

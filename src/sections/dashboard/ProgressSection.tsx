@@ -1,8 +1,8 @@
 import React from "react";
 import { motion } from "motion/react";
-import { LearningPath } from "../types";
-import { StellarProgress } from "../components/StellarProgress";
-import { Language } from "../translations";
+import { LearningPath } from "../../types/types";
+import { ProgressLayout } from "../../components/ProgressLayout/ProgressLayout";
+import { Language } from "../../constants/translations";
 
 interface ProgressSectionProps {
   learningPaths: LearningPath[];
@@ -23,7 +23,7 @@ export const ProgressSection = ({
       exit={{ opacity: 0, y: -10 }}
       transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
     >
-      <StellarProgress
+      <ProgressLayout
         learningPaths={learningPaths}
         onNavigateToMap={onNavigateToMap}
         language={language}

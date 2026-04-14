@@ -1,33 +1,37 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { 
-  Brain, 
-  Network, 
-  Database, 
-  Sparkles, 
-  Dna, 
-  Globe, 
+import {
+  Brain,
+  Network,
+  Database,
+  Sparkles,
+  Dna,
+  Globe,
   Zap,
   Layers,
   Search,
-  Cpu
+  Cpu,
 } from "lucide-react";
-import { translations, Language } from "../translations";
+import { translations, Language } from "../../constants/translations";
 
 const getStages = (t: any) => [
-  { icon: Brain,     text: t.gen_stage_1 },
-  { icon: Network,   text: t.gen_stage_2 },
-  { icon: Database,  text: t.gen_stage_3 },
-  { icon: Search,    text: t.gen_stage_4 },
-  { icon: Cpu,       text: t.gen_stage_5 },
-  { icon: Layers,    text: t.gen_stage_6 },
-  { icon: Dna,       text: t.gen_stage_7 },
-  { icon: Zap,       text: t.gen_stage_8 },
-  { icon: Globe,     text: t.gen_stage_9 },
-  { icon: Sparkles,  text: t.gen_stage_10 },
+  { icon: Brain, text: t.gen_stage_1 },
+  { icon: Network, text: t.gen_stage_2 },
+  { icon: Database, text: t.gen_stage_3 },
+  { icon: Search, text: t.gen_stage_4 },
+  { icon: Cpu, text: t.gen_stage_5 },
+  { icon: Layers, text: t.gen_stage_6 },
+  { icon: Dna, text: t.gen_stage_7 },
+  { icon: Zap, text: t.gen_stage_8 },
+  { icon: Globe, text: t.gen_stage_9 },
+  { icon: Sparkles, text: t.gen_stage_10 },
 ];
 
-export const GenerationLoader = ({ language = "es" }: { language?: Language }) => {
+export const GenerationLoader = ({
+  language = "es",
+}: {
+  language?: Language;
+}) => {
   const t = translations[language];
   const STAGES = getStages(t);
   const [currentStage, setCurrentStage] = useState(0);
@@ -42,24 +46,33 @@ export const GenerationLoader = ({ language = "es" }: { language?: Language }) =
   const StageIcon = STAGES[currentStage].icon;
 
   return (
-    <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden" style={{ background: "var(--surface)" }}>
+    <div
+      className="fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden"
+      style={{ background: "var(--surface)" }}
+    >
       {/* Background Ambience */}
-      <div style={{
-        position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0,
-        background: "radial-gradient(circle at 50% 50%, rgba(0,195,237,0.06) 0%, transparent 60%)",
-      }} />
-      
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          pointerEvents: "none",
+          zIndex: 0,
+          background:
+            "radial-gradient(circle at 50% 50%, rgba(0,195,237,0.06) 0%, transparent 60%)",
+        }}
+      />
+
       <div className="relative z-10 flex flex-col items-center gap-12 max-w-sm w-full px-8">
         {/* Main Spinner Core */}
         <div className="relative w-32 h-32 flex items-center justify-center">
           {/* Rotating Rings */}
-          <motion.div 
+          <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
             className="absolute inset-0 border-2 border-dashed border-primary/20 rounded-full"
             style={{ borderColor: "rgba(0,195,237,0.15)" }}
           />
-          <motion.div 
+          <motion.div
             animate={{ rotate: -360 }}
             transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
             className="absolute inset-[-12px] border border-primary/10 rounded-full"
@@ -99,12 +112,12 @@ export const GenerationLoader = ({ language = "es" }: { language?: Language }) =
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                style={{ 
-                  fontFamily: "var(--font-sans)", 
-                  fontSize: "0.85rem", 
-                  fontWeight: 600, 
+                style={{
+                  fontFamily: "var(--font-sans)",
+                  fontSize: "0.85rem",
+                  fontWeight: 600,
                   color: "var(--on-surface)",
-                  letterSpacing: "0.01em"
+                  letterSpacing: "0.01em",
                 }}
               >
                 {STAGES[currentStage].text}
@@ -112,28 +125,41 @@ export const GenerationLoader = ({ language = "es" }: { language?: Language }) =
             </AnimatePresence>
           </div>
 
-          <div className="w-48 h-1 background-surface-container-high rounded-full overflow-hidden" 
-               style={{ backgroundColor: "var(--surface-container-high)", height: 3, width: 180 }}>
-            <motion.div 
-               animate={{ x: [-180, 180] }}
-               transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-               className="h-full w-24 bg-primary rounded-full"
-               style={{ 
-                 width: "35%", 
-                 background: "linear-gradient(90deg, transparent, var(--primary), transparent)" 
-               }}
+          <div
+            className="w-48 h-1 background-surface-container-high rounded-full overflow-hidden"
+            style={{
+              backgroundColor: "var(--surface-container-high)",
+              height: 3,
+              width: 180,
+            }}
+          >
+            <motion.div
+              animate={{ x: [-180, 180] }}
+              transition={{
+                duration: 2.5,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className="h-full w-24 bg-primary rounded-full"
+              style={{
+                width: "35%",
+                background:
+                  "linear-gradient(90deg, transparent, var(--primary), transparent)",
+              }}
             />
           </div>
 
-          <span style={{ 
-            fontFamily: "var(--font-sans)", 
-            fontSize: "0.65rem", 
-            textTransform: "uppercase", 
-            letterSpacing: "0.2em", 
-            color: "var(--outline)",
-            marginTop: "0.5rem",
-            fontWeight: 700
-          }}>
+          <span
+            style={{
+              fontFamily: "var(--font-sans)",
+              fontSize: "0.65rem",
+              textTransform: "uppercase",
+              letterSpacing: "0.2em",
+              color: "var(--outline)",
+              marginTop: "0.5rem",
+              fontWeight: 700,
+            }}
+          >
             CarthosAI Engine
           </span>
         </div>
@@ -144,20 +170,20 @@ export const GenerationLoader = ({ language = "es" }: { language?: Language }) =
         {[...Array(20)].map((_, i) => (
           <motion.div
             key={i}
-            initial={{ 
-              x: Math.random() * 100 + "%", 
+            initial={{
+              x: Math.random() * 100 + "%",
               y: Math.random() * 100 + "%",
-              opacity: Math.random() * 0.5 
+              opacity: Math.random() * 0.5,
             }}
-            animate={{ 
+            animate={{
               y: ["-10%", "110%"],
-              opacity: [0, 1, 0]
+              opacity: [0, 1, 0],
             }}
-            transition={{ 
-              duration: 5 + Math.random() * 10, 
-              repeat: Infinity, 
+            transition={{
+              duration: 5 + Math.random() * 10,
+              repeat: Infinity,
               ease: "linear",
-              delay: Math.random() * 10
+              delay: Math.random() * 10,
             }}
             className="absolute w-1 h-1 bg-primary rounded-full"
             style={{ backgroundColor: "var(--primary)", opacity: 0.2 }}
