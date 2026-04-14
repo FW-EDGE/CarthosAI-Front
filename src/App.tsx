@@ -9,15 +9,15 @@ const TIER_MAP_LIMITS: Record<Tier, number> = {
   pro: 5,
   premium: Infinity,
 };
-import { Landing } from "./components/Landing";
+import { Landing } from "./sections/landing/Landing";
 import { Auth } from "./components/Auth/Auth";
 import { TopNav } from "./components/TopNav/TopNav";
-import { Onboarding } from "./components/Onboarding";
+import { Onboarding } from "./sections/onboarding/Onboarding";
 import { GenerationLoader } from "./components/GenerationLoader/GenerationLoader";
 import { UpgradeModal } from "./components/UpgradeModal/UpgradeModal";
 
 // Sections
-import { MapSection } from "./sections/dashboard/MapSection";
+import { MapSection } from "./sections/dashboard/MapSection/MapSection";
 import { ProgressSection } from "./sections/dashboard/ProgressSection";
 import { NodesSection } from "./sections/dashboard/NodesSection";
 import { VaultSection } from "./sections/dashboard/VaultSection";
@@ -277,6 +277,8 @@ export default function App() {
               }}
               onNodeUpdate={handleNodeUpdate}
               onDragEnd={handleDragEnd}
+              tier={tier}
+              onMapCompleted={() => setShowUpgradeModal(true)}
             />
           )}
 

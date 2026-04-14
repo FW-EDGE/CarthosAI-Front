@@ -1,9 +1,9 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { MapPin, ChevronDown, Plus } from "lucide-react";
-import { LearningPath } from "../types/types";
-import { translations, Language } from "../constants/translations";
-import { Button } from "./ui/Button";
+import { LearningPath } from "../../types/types";
+import { translations, Language } from "../../constants/translations";
+import { Button } from "../ui/Button";
 
 interface MapSelectorBarProps {
   paths: LearningPath[];
@@ -54,7 +54,7 @@ export const MapSelectorBar = ({
           display: "flex",
           alignItems: "center",
           gap: "0.75rem",
-          padding: "0.375rem 0.625rem",
+          padding: "0.155rem 0.5rem",
           borderRadius: "var(--radius-full)",
         }}
       >
@@ -272,9 +272,9 @@ export const MapSelectorBar = ({
       <Button
         onClick={onNewMap}
         variant="ghost"
-        size="sm"
+        size="md"
         className="glass-pill-nav"
-        style={{ color: "var(--primary)", padding: "0.5rem 1rem" }}
+        style={{ color: "var(--primary)", padding: "0.56rem 1rem" }}
         leftIcon={<Plus size={14} />}
       >
         {t.map_new_map}

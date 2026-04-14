@@ -5,7 +5,8 @@ export const translations = {
     hero_title_1: "Connect your",
     hero_title_2: "passions.",
     hero_title_3: "Master anything.",
-    hero_subtitle: "CarthosAI translates your unique hobbies and interests into structured, orbital learning paths. Watch abstract domains become highly connected nodes with granular progress tracking.",
+    hero_subtitle:
+      "CarthosAI translates your unique hobbies and interests into structured, orbital learning paths. Watch abstract domains become highly connected nodes with granular progress tracking.",
     hero_cta: "Build your Map",
     hero_signin: "Sign In",
     nav_methodology: "Methodology",
@@ -15,7 +16,7 @@ export const translations = {
     demo_label: "Live Demo",
     footer_tagline: "The Future of Intellectual Growth",
     footer_text: "Mapping the human experience through nodes of knowledge.",
-    
+
     // TopNav
     nav_map: "Map",
     nav_nodes: "Nodes",
@@ -38,7 +39,8 @@ export const translations = {
     dash_view_map: "View Map",
     dash_overall_empty: "Initialize your first map to see results",
     dash_sync_status: "Live Syncing",
-    dash_tagline: "Tracking your cognitive expansion across {n} {maps}. All systems nominal.",
+    dash_tagline:
+      "Tracking your cognitive expansion across {n} {maps}. All systems nominal.",
     dash_chart_desc: "% of completed nodes per learning map",
     dash_total_nodes: "Total Nodes",
     dash_initiate: "Initiate Sequence",
@@ -59,12 +61,14 @@ export const translations = {
     node_not_started: "Not Started",
     vault_subtitle: "Completed knowledge maps archived in your neural vault.",
     vault_locked_title: "Vault Locked",
-    vault_locked_desc: "Complete at least one map at 100% to start archiving your progress here.",
+    vault_locked_desc:
+      "Complete at least one map at 100% to start archiving your progress here.",
     vault_explore_cta: "Explore new maps",
     vault_nodes: "nodes",
     vault_completed_label: "Completed",
     vault_go_to_map: "Go to Map",
-    nodes_subtitle: "Explore all knowledge nodes in your personal neural network.",
+    nodes_subtitle:
+      "Explore all knowledge nodes in your personal neural network.",
     nodes_search_placeholder: "Search by title, map or type...",
     nodes_filter_all: "All",
     nodes_map_label: "Map",
@@ -76,7 +80,8 @@ export const translations = {
     node_done: "Done",
     node_start: "Start Learning",
     node_unlock_prev: "Complete previous nodes to unlock",
-    node_desc_placeholder: "Explore the fundamentals of {title}. A critical foundation for system mastery.",
+    node_desc_placeholder:
+      "Explore the fundamentals of {title}. A critical foundation for system mastery.",
 
     // Onboarding
     onboarding_title: "Neural Profile Initialization",
@@ -130,101 +135,151 @@ export const translations = {
     gen_stage_10: "Final aesthetic polish...",
     landing_tagline: "Hyper-Personalized Learning Cartography",
     landing_architecture_title: "The Architecture of Mastery",
-    landing_architecture_desc: "CarthosAI bridges the gap between what you love and what you want to learn. We map the entire journey with extreme granularity.",
+    landing_architecture_desc:
+      "CarthosAI bridges the gap between what you love and what you want to learn. We map the entire journey with extreme granularity.",
     landing_feature_1_title: "Anchor to your Hobbies",
-    landing_feature_1_desc: "Tell CarthosAI what you love doing—playing guitar, drawing, video games. The engine creates analogies and nodes based exclusively on your passions.",
+    landing_feature_1_desc:
+      "Tell CarthosAI what you love doing—playing guitar, drawing, video games. The engine creates analogies and nodes based exclusively on your passions.",
     landing_feature_2_title: "Granular Node Tracking",
-    landing_feature_2_desc: "Don't just learn 'Physics'. Learn specific kinematic equations represented as trackable nodes. Experience the rush of syncing every single micro-concept.",
+    landing_feature_2_desc:
+      "Don't just learn 'Physics'. Learn specific kinematic equations represented as trackable nodes. Experience the rush of syncing every single micro-concept.",
     landing_feature_3_title: "Dynamic Knowledge Graphs",
-    landing_feature_3_desc: "Visualize your entire learning journey. Drag, align, and organize the orbital map exactly how your brain understands it best.",
+    landing_feature_3_desc:
+      "Visualize your entire learning journey. Drag, align, and organize the orbital map exactly how your brain understands it best.",
     demo_map_name: "Introduction to Aviation Technology",
-    demo_map_desc: "A fundamental exploration of aviation technology encompassing key concepts and principles.",
+    demo_map_desc:
+      "A fundamental exploration of aviation technology encompassing key concepts and principles.",
     demo_node_1_title: "Fundamentals of Aircraft Design",
-    demo_node_1_desc: "Introduction to the basic principles of aircraft design and aerodynamics.",
+    demo_node_1_desc:
+      "Introduction to the basic principles of aircraft design and aerodynamics.",
     demo_node_1_step_1_stage: "Stage 1: Overview and Terminology",
-    demo_node_1_step_1_focus: "Get acquainted with basic concepts and vocabulary",
-    demo_node_1_step_1_action: "Read through the introductory chapters, focusing on key terms and definitions. Make flashcards for important terminologies to test your understanding.",
+    demo_node_1_step_1_focus:
+      "Get acquainted with basic concepts and vocabulary",
+    demo_node_1_step_1_action:
+      "Read through the introductory chapters, focusing on key terms and definitions. Make flashcards for important terminologies to test your understanding.",
     demo_node_1_step_2_stage: "Stage 2: Principles of Aerodynamics",
-    demo_node_1_step_2_focus: "Understand the fundamental principles of aerodynamics that influence aircraft design",
-    demo_node_1_step_2_action: "Study chapters related to aerodynamics. Summarize the major principles and their implications on design. Create diagrams to visualize airflow and pressure changes.",
+    demo_node_1_step_2_focus:
+      "Understand the fundamental principles of aerodynamics that influence aircraft design",
+    demo_node_1_step_2_action:
+      "Study chapters related to aerodynamics. Summarize the major principles and their implications on design. Create diagrams to visualize airflow and pressure changes.",
     demo_node_1_step_3_stage: "Stage 3: Design Process",
-    demo_node_1_step_3_focus: "Learn the step-by-step process of designing an aircraft",
-    demo_node_1_step_3_action: "Dissect the chapters focusing on the aircraft design process. Develop a detailed flowchart from initial concept to design specifications.",
+    demo_node_1_step_3_focus:
+      "Learn the step-by-step process of designing an aircraft",
+    demo_node_1_step_3_action:
+      "Dissect the chapters focusing on the aircraft design process. Develop a detailed flowchart from initial concept to design specifications.",
     demo_node_1_step_4_stage: "Stage 4: Case Studies and Applications",
-    demo_node_1_step_4_focus: "Apply learned concepts using real-world case studies",
-    demo_node_1_step_4_action: "Read case study examples in the book. Write a brief report on how theoretical principles are applied in these real-world scenarios, noting any challenges and solutions.",
+    demo_node_1_step_4_focus:
+      "Apply learned concepts using real-world case studies",
+    demo_node_1_step_4_action:
+      "Read case study examples in the book. Write a brief report on how theoretical principles are applied in these real-world scenarios, noting any challenges and solutions.",
     demo_node_1_step_5_stage: "Stage 5: Review and Practical Application",
-    demo_node_1_step_5_focus: "Reinforce knowledge through review and practical exercises",
-    demo_node_1_step_5_action: "Review all notes and summaries. Attempt design exercises provided in the book or related resources. Collaborate with peers to discuss and critique designs.",
+    demo_node_1_step_5_focus:
+      "Reinforce knowledge through review and practical exercises",
+    demo_node_1_step_5_action:
+      "Review all notes and summaries. Attempt design exercises provided in the book or related resources. Collaborate with peers to discuss and critique designs.",
 
     demo_node_2_title: "Principles of Flight Mechanics",
-    demo_node_2_desc: "Understanding the mechanical principles that allow aircraft to fly.",
+    demo_node_2_desc:
+      "Understanding the mechanical principles that allow aircraft to fly.",
     demo_node_2_step_1_stage: "Foundation Building",
     demo_node_2_step_1_focus: "Understand basic concepts and terminology",
-    demo_node_2_step_1_action: "Review introductory lectures and notes from the MIT OpenCourseWare. Focus on understanding key terms such as lift, drag, thrust, and weight.",
+    demo_node_2_step_1_action:
+      "Review introductory lectures and notes from the MIT OpenCourseWare. Focus on understanding key terms such as lift, drag, thrust, and weight.",
     demo_node_2_step_2_stage: "In-Depth Lectures",
-    demo_node_2_step_2_focus: "Gain a deeper understanding of the core mechanical principles",
-    demo_node_2_step_2_action: "Watch detailed video lectures focusing on topics such as Bernoulli's Principle, Airfoil analysis, and the equations of motion.",
+    demo_node_2_step_2_focus:
+      "Gain a deeper understanding of the core mechanical principles",
+    demo_node_2_step_2_action:
+      "Watch detailed video lectures focusing on topics such as Bernoulli's Principle, Airfoil analysis, and the equations of motion.",
     demo_node_2_step_3_stage: "Application and Problem Solving",
     demo_node_2_step_3_focus: "Apply the principles to real-world scenarios",
-    demo_node_2_step_3_action: "Work through problem sets provided in the course. Attempt to solve problems without referring to notes initially, and then review errors.",
+    demo_node_2_step_3_action:
+      "Work through problem sets provided in the course. Attempt to solve problems without referring to notes initially, and then review errors.",
     demo_node_2_step_4_stage: "Collaborative Learning",
     demo_node_2_step_4_focus: "Enhance understanding through discussion",
-    demo_node_2_step_4_action: "Join discussion forums or study groups. Explain principles to peers and discuss problem-solving strategies. Seek feedback on your understanding.",
+    demo_node_2_step_4_action:
+      "Join discussion forums or study groups. Explain principles to peers and discuss problem-solving strategies. Seek feedback on your understanding.",
     demo_node_2_step_5_stage: "Review and Self-assessment",
     demo_node_2_step_5_focus: "Solidify knowledge and assess mastery",
-    demo_node_2_step_5_action: "Review all course materials and notes. Take practice quizzes available on MIT OpenCourseWare. Use self-assessment tools to evaluate your understanding.",
+    demo_node_2_step_5_action:
+      "Review all course materials and notes. Take practice quizzes available on MIT OpenCourseWare. Use self-assessment tools to evaluate your understanding.",
 
     demo_node_3_title: "Introduction to Aerospace Engineering",
-    demo_node_3_desc: "Comprehensive overview of aerospace engineering including technology and materials.",
+    demo_node_3_desc:
+      "Comprehensive overview of aerospace engineering including technology and materials.",
     demo_node_3_step_1_stage: "Foundation Building",
-    demo_node_3_step_1_focus: "Grasp the basic principles of flight and aerospace terminology.",
-    demo_node_3_step_1_action: "Read Chapters 1-3 to understand fundamental concepts such as the four forces of flight and basic fluid dynamics.",
+    demo_node_3_step_1_focus:
+      "Grasp the basic principles of flight and aerospace terminology.",
+    demo_node_3_step_1_action:
+      "Read Chapters 1-3 to understand fundamental concepts such as the four forces of flight and basic fluid dynamics.",
     demo_node_3_step_2_stage: "Deep Dive into Technology",
-    demo_node_3_step_2_focus: "Learn about aerospace technology and its applications.",
-    demo_node_3_step_2_action: "Study Chapters 4-6, focusing on how different technologies are applied in aircraft design and space missions.",
+    demo_node_3_step_2_focus:
+      "Learn about aerospace technology and its applications.",
+    demo_node_3_step_2_action:
+      "Study Chapters 4-6, focusing on how different technologies are applied in aircraft design and space missions.",
     demo_node_3_step_3_stage: "Materials and Structures",
-    demo_node_3_step_3_focus: "Understand the materials used in aerospace and the basics of structural integrity.",
-    demo_node_3_step_3_action: "Read Chapters 7-9. Create a comparative chart of different materials used in aerospace for performance, cost, and other criteria.",
+    demo_node_3_step_3_focus:
+      "Understand the materials used in aerospace and the basics of structural integrity.",
+    demo_node_3_step_3_action:
+      "Read Chapters 7-9. Create a comparative chart of different materials used in aerospace for performance, cost, and other criteria.",
     demo_node_3_step_4_stage: "Applications and Systems",
-    demo_node_3_step_4_focus: "Explore various aerospace systems and their integration.",
-    demo_node_3_step_4_action: "Dive into Chapters 10-12. Focus on how different aerospace systems work together to form a fully functional aircraft.",
+    demo_node_3_step_4_focus:
+      "Explore various aerospace systems and their integration.",
+    demo_node_3_step_4_action:
+      "Dive into Chapters 10-12. Focus on how different aerospace systems work together to form a fully functional aircraft.",
     demo_node_3_step_5_stage: "Review and Synthesis",
-    demo_node_3_step_5_focus: "Consolidate learning and connect different aspects of aerospace engineering.",
-    demo_node_3_step_5_action: "Review notes and diagrams from all chapters. Formulate and answer potential exam or discussion questions.",
+    demo_node_3_step_5_focus:
+      "Consolidate learning and connect different aspects of aerospace engineering.",
+    demo_node_3_step_5_action:
+      "Review notes and diagrams from all chapters. Formulate and answer potential exam or discussion questions.",
 
     demo_node_4_title: "Basics of Avionics Systems",
-    demo_node_4_desc: "Exploring the role and technology of avionics systems in modern aircraft.",
+    demo_node_4_desc:
+      "Exploring the role and technology of avionics systems in modern aircraft.",
     demo_node_5_title: "Aviation Safety and Regulations",
-    demo_node_5_desc: "An overview of safety protocols and regulatory standards in aviation.",
+    demo_node_5_desc:
+      "An overview of safety protocols and regulatory standards in aviation.",
     demo_node_6_title: "Modern Aircraft Propulsion",
-    demo_node_6_desc: "Exploring different aircraft propulsion systems and their technological advancements.",
+    demo_node_6_desc:
+      "Exploring different aircraft propulsion systems and their technological advancements.",
     methodology_title: "How CarthosAI Works",
-    methodology_subtitle: "Your journey from curiosity to mastery in four precise steps.",
+    methodology_subtitle:
+      "Your journey from curiosity to mastery in four precise steps.",
     methodology_step_1_title: "Select Domain",
-    methodology_step_1_desc: "Choose the broad field of knowledge you want to explore, from Science to Humanities.",
+    methodology_step_1_desc:
+      "Choose the broad field of knowledge you want to explore, from Science to Humanities.",
     methodology_step_2_title: "Define Depth",
-    methodology_step_2_desc: "Decide your level of commitment: bird's eye view, professional application, or academic mastery.",
+    methodology_step_2_desc:
+      "Decide your level of commitment: bird's eye view, professional application, or academic mastery.",
     methodology_step_3_title: "Target Focus",
-    methodology_step_3_desc: "Specify exactly what you want to learn. Our engine generates a custom map based on your specific goal.",
+    methodology_step_3_desc:
+      "Specify exactly what you want to learn. Our engine generates a custom map based on your specific goal.",
     methodology_step_4_title: "Sync & Master",
-    methodology_step_4_desc: "Navigate through your personalized node map and track your progress as you sync every concept.",
+    methodology_step_4_desc:
+      "Navigate through your personalized node map and track your progress as you sync every concept.",
     tracking_title: "Precision in Every Node",
-    tracking_subtitle: "Experience the rush of watching your mastery expand as you sync concepts one by one.",
+    tracking_subtitle:
+      "Experience the rush of watching your mastery expand as you sync concepts one by one.",
     tracking_feature_1_title: "Live Synchronization",
-    tracking_feature_1_desc: "Complete modules and watch your progress update in real-time across your entire orbital map.",
+    tracking_feature_1_desc:
+      "Complete modules and watch your progress update in real-time across your entire orbital map.",
     tracking_feature_2_title: "Visual Mastery Graphs",
-    tracking_feature_2_desc: "Detailed analytics of your progress per domain. See exactly how far you've come from day one.",
+    tracking_feature_2_desc:
+      "Detailed analytics of your progress per domain. See exactly how far you've come from day one.",
     tracking_feature_3_title: "Smart Pathfinding",
-    tracking_feature_3_desc: "CarthosAI automatically calculates your next best quest to keep your momentum high.",
+    tracking_feature_3_desc:
+      "CarthosAI automatically calculates your next best quest to keep your momentum high.",
     atlas_title: "The Architecture of your Mind",
-    atlas_subtitle: "Your passions are the seeds. We grow the ecosystem. Explore how CarthosAI bridges interests into professional mastery.",
+    atlas_subtitle:
+      "Your passions are the seeds. We grow the ecosystem. Explore how CarthosAI bridges interests into professional mastery.",
     atlas_feature_1_title: "Conceptual Cartography",
-    atlas_feature_1_desc: "Every node is meticulously generated to bridge your existing hobbies with high-value professional knowledge.",
+    atlas_feature_1_desc:
+      "Every node is meticulously generated to bridge your existing hobbies with high-value professional knowledge.",
     atlas_feature_2_title: "Non-Linear Mastery",
-    atlas_feature_2_desc: "Ditch the list. Navigate a graph that understands how concepts flow in the real world.",
+    atlas_feature_2_desc:
+      "Ditch the list. Navigate a graph that understands how concepts flow in the real world.",
     atlas_feature_3_title: "Live Knowledge Sync",
-    atlas_feature_3_desc: "As you learn, the map evolves. Watch your mental orbit expand with every completed node.",
+    atlas_feature_3_desc:
+      "As you learn, the map evolves. Watch your mental orbit expand with every completed node.",
     onboarding_cat_tech: "Technology",
     onboarding_cat_science: "Science",
     onboarding_cat_humanities: "Humanities",
@@ -233,6 +288,8 @@ export const translations = {
     onboarding_cat_health: "Health",
     onboarding_cat_education: "Education",
     onboarding_cat_culture: "Culture",
+    onboarding_cat_literature: "Literature",
+    onboarding_cat_history: "History",
     auth_welcome_back: "Welcome back",
     auth_initialize_link: "Initialize Neural Link",
     auth_access_orbit: "Access your orbit to continue syncing.",
@@ -266,7 +323,8 @@ export const translations = {
     hero_title_1: "Conecta tus",
     hero_title_2: "pasiones.",
     hero_title_3: "Domina lo que sea.",
-    hero_subtitle: "CarthosAI traduce tus hobbies e intereses en rutas de aprendizaje estructuradas y orbitales. Mira cómo dominios abstractos se convierten en nodos conectados con seguimiento granular.",
+    hero_subtitle:
+      "CarthosAI traduce tus hobbies e intereses en rutas de aprendizaje estructuradas y orbitales. Mira cómo dominios abstractos se convierten en nodos conectados con seguimiento granular.",
     hero_cta: "Construye tu Mapa",
     hero_signin: "Iniciar Sesión",
     nav_methodology: "Metodología",
@@ -275,7 +333,8 @@ export const translations = {
     nav_apis: "APIs y Servicios",
     demo_label: "Demo en Vivo",
     footer_tagline: "El Futuro del Crecimiento Intelectual",
-    footer_text: "Mapeando la experiencia humana a través de nodos de conocimiento.",
+    footer_text:
+      "Mapeando la experiencia humana a través de nodos de conocimiento.",
 
     // TopNav
     nav_map: "Mapa",
@@ -299,7 +358,8 @@ export const translations = {
     dash_view_map: "Ver Mapa",
     dash_overall_empty: "Inicializa tu primer mapa para ver resultados",
     dash_sync_status: "Sincronización en vivo",
-    dash_tagline: "Siguiendo tu expansión cognitiva a través de {n} {maps}. Sistemas estables.",
+    dash_tagline:
+      "Siguiendo tu expansión cognitiva a través de {n} {maps}. Sistemas estables.",
     dash_chart_desc: "% de nodos completados por mapa",
     dash_total_nodes: "Nodos Totales",
     dash_initiate: "Iniciar Secuencia",
@@ -318,14 +378,17 @@ export const translations = {
     node_in_progress: "En Progreso",
     node_locked: "Bloqueado",
     node_not_started: "Sin Empezar",
-    vault_subtitle: "Mapas de conocimiento completados y archivados en tu vault neural.",
+    vault_subtitle:
+      "Mapas de conocimiento completados y archivados en tu vault neural.",
     vault_locked_title: "Archivo Bloqueado",
-    vault_locked_desc: "Completá al menos un mapa al 100% para empezar a archivar tus progresos acá.",
+    vault_locked_desc:
+      "Completá al menos un mapa al 100% para empezar a archivar tus progresos acá.",
     vault_explore_cta: "Explorá nuevos mapas",
     vault_nodes: "nodos",
     vault_completed_label: "Completado",
     vault_go_to_map: "Ir al Mapa",
-    nodes_subtitle: "Explorá todos los nodos de conocimiento de tu red neural personal.",
+    nodes_subtitle:
+      "Explorá todos los nodos de conocimiento de tu red neural personal.",
     nodes_search_placeholder: "Buscá por título, mapa o tipo...",
     nodes_filter_all: "Todos",
     nodes_map_label: "Mapa",
@@ -337,7 +400,8 @@ export const translations = {
     node_done: "Listo",
     node_start: "Empezar Aprendizaje",
     node_unlock_prev: "Completa los nodos anteriores para desbloquear",
-    node_desc_placeholder: "Explora los fundamentos de {title}. Una base crítica para el dominio del sistema.",
+    node_desc_placeholder:
+      "Explora los fundamentos de {title}. Una base crítica para el dominio del sistema.",
 
     // Onboarding
     onboarding_title: "Inicialización de Perfil Neural",
@@ -391,101 +455,151 @@ export const translations = {
     gen_stage_10: "Pulido estético final...",
     landing_tagline: "Cartografía de aprendizaje hiper-personalizada",
     landing_architecture_title: "La Arquitectura de la Maestría",
-    landing_architecture_desc: "CarthosAI cierra la brecha entre lo que amas y lo que quieres aprender. Mapeamos todo el viaje con extrema granularidad.",
+    landing_architecture_desc:
+      "CarthosAI cierra la brecha entre lo que amas y lo que quieres aprender. Mapeamos todo el viaje con extrema granularidad.",
     landing_feature_1_title: "Anclado a tus Hobbies",
-    landing_feature_1_desc: "Dile a CarthosAI lo que te gusta hacer: tocar la guitarra, dibujar, videojuegos. El motor crea analogías y nodos basados exclusivamente en tus pasiones.",
+    landing_feature_1_desc:
+      "Dile a CarthosAI lo que te gusta hacer: tocar la guitarra, dibujar, videojuegos. El motor crea analogías y nodos basados exclusivamente en tus pasiones.",
     landing_feature_2_title: "Seguimiento Granular de Nodos",
-    landing_feature_2_desc: "No solo aprendas 'Física'. Aprende ecuaciones cinemáticas específicas representadas como nodos rastreables. Vive la emoción de sincronizar cada micro-concepto.",
+    landing_feature_2_desc:
+      "No solo aprendas 'Física'. Aprende ecuaciones cinemáticas específicas representadas como nodos rastreables. Vive la emoción de sincronizar cada micro-concepto.",
     landing_feature_3_title: "Grafos de Conocimiento Dinámicos",
-    landing_feature_3_desc: "Visualiza todo tu viaje de aprendizaje. Arrastra, alinea y organiza el mapa orbital exactamente como tu cerebro lo entiende mejor.",
+    landing_feature_3_desc:
+      "Visualiza todo tu viaje de aprendizaje. Arrastra, alinea y organiza el mapa orbital exactamente como tu cerebro lo entiende mejor.",
     demo_map_name: "Introducción a la Tecnología de Aviación",
-    demo_map_desc: "Una exploración fundamental de la tecnología de aviación abarcando conceptos y principios clave.",
+    demo_map_desc:
+      "Una exploración fundamental de la tecnología de aviación abarcando conceptos y principios clave.",
     demo_node_1_title: "Fundamentos del Diseño de Aeronaves",
-    demo_node_1_desc: "Introducción a los principios básicos del diseño de aeronaves y aerodinámica.",
+    demo_node_1_desc:
+      "Introducción a los principios básicos del diseño de aeronaves y aerodinámica.",
     demo_node_1_step_1_stage: "Etapa 1: Visión General y Terminología",
-    demo_node_1_step_1_focus: "Familiarízate con los conceptos básicos y el vocabulario",
-    demo_node_1_step_1_action: "Lee los capítulos introductorios, concentrándote en términos clave. Haz tarjetas de memoria para probar tu comprensión.",
+    demo_node_1_step_1_focus:
+      "Familiarízate con los conceptos básicos y el vocabulario",
+    demo_node_1_step_1_action:
+      "Lee los capítulos introductorios, concentrándote en términos clave. Haz tarjetas de memoria para probar tu comprensión.",
     demo_node_1_step_2_stage: "Etapa 2: Principios de Aerodinámica",
-    demo_node_1_step_2_focus: "Comprende los principios fundamentales de la aerodinámica que influyen en el diseño",
-    demo_node_1_step_2_action: "Estudia los capítulos relacionados. Resume los principios más importantes y sus implicaciones. Crea diagramas del flujo de aire.",
+    demo_node_1_step_2_focus:
+      "Comprende los principios fundamentales de la aerodinámica que influyen en el diseño",
+    demo_node_1_step_2_action:
+      "Estudia los capítulos relacionados. Resume los principios más importantes y sus implicaciones. Crea diagramas del flujo de aire.",
     demo_node_1_step_3_stage: "Etapa 3: Proceso de Diseño",
-    demo_node_1_step_3_focus: "Aprende el proceso paso a paso para diseñar una aeronave",
-    demo_node_1_step_3_action: "Disecciona los capítulos enfocados en el diseño. Desarrolla un diagrama de flujo detallado desde el concepto inicial hasta las especificaciones.",
+    demo_node_1_step_3_focus:
+      "Aprende el proceso paso a paso para diseñar una aeronave",
+    demo_node_1_step_3_action:
+      "Disecciona los capítulos enfocados en el diseño. Desarrolla un diagrama de flujo detallado desde el concepto inicial hasta las especificaciones.",
     demo_node_1_step_4_stage: "Etapa 4: Casos de Estudio y Aplicaciones",
-    demo_node_1_step_4_focus: "Aplica los conceptos aprendidos usando casos reales",
-    demo_node_1_step_4_action: "Lee ejemplos de casos de estudio en el libro. Escribe un breve reporte sobre cómo los principios teóricos se aplican en escenarios reales.",
+    demo_node_1_step_4_focus:
+      "Aplica los conceptos aprendidos usando casos reales",
+    demo_node_1_step_4_action:
+      "Lee ejemplos de casos de estudio en el libro. Escribe un breve reporte sobre cómo los principios teóricos se aplican en escenarios reales.",
     demo_node_1_step_5_stage: "Etapa 5: Revisión y Aplicación Práctica",
-    demo_node_1_step_5_focus: "Refuerza tus conocimientos mediante la revisión y ejercicios prácticos",
-    demo_node_1_step_5_action: "Revisa todas las notas y resúmenes. Intenta los ejercicios de diseño proporcionados y discútelos con compañeros.",
+    demo_node_1_step_5_focus:
+      "Refuerza tus conocimientos mediante la revisión y ejercicios prácticos",
+    demo_node_1_step_5_action:
+      "Revisa todas las notas y resúmenes. Intenta los ejercicios de diseño proporcionados y discútelos con compañeros.",
 
     demo_node_2_title: "Principios de la Mecánica de Vuelo",
-    demo_node_2_desc: "Comprendiendo los principios mecánicos que permiten volar a una aeronave.",
+    demo_node_2_desc:
+      "Comprendiendo los principios mecánicos que permiten volar a una aeronave.",
     demo_node_2_step_1_stage: "Construcción de Bases",
     demo_node_2_step_1_focus: "Comprende conceptos y terminología básica",
-    demo_node_2_step_1_action: "Revisa las clases introductorias de MIT OpenCourseWare. Concéntrate en comprender términos como sustentación, resistencia, empuje y peso.",
+    demo_node_2_step_1_action:
+      "Revisa las clases introductorias de MIT OpenCourseWare. Concéntrate en comprender términos como sustentación, resistencia, empuje y peso.",
     demo_node_2_step_2_stage: "Clases en Profundidad",
-    demo_node_2_step_2_focus: "Obtén un entendimiento más profundo de los principios mecánicos base",
-    demo_node_2_step_2_action: "Mira las clases sobre el Principio de Bernoulli, análisis de perfiles aerodinámicos y ecuaciones de movimiento. Toma notas detalladas.",
+    demo_node_2_step_2_focus:
+      "Obtén un entendimiento más profundo de los principios mecánicos base",
+    demo_node_2_step_2_action:
+      "Mira las clases sobre el Principio de Bernoulli, análisis de perfiles aerodinámicos y ecuaciones de movimiento. Toma notas detalladas.",
     demo_node_2_step_3_stage: "Aplicación y Resolución de Problemas",
     demo_node_2_step_3_focus: "Aplica los principios a escenarios reales",
-    demo_node_2_step_3_action: "Trabaja en los ejercicios proporcionados. Intenta resolver los problemas sin ver notas y revisa los recursos de apoyo.",
+    demo_node_2_step_3_action:
+      "Trabaja en los ejercicios proporcionados. Intenta resolver los problemas sin ver notas y revisa los recursos de apoyo.",
     demo_node_2_step_4_stage: "Aprendizaje Colaborativo",
     demo_node_2_step_4_focus: "Mejora la comprensión mediante la discusión",
-    demo_node_2_step_4_action: "Únete a foros de discusión. Explícale principios a tus colegas y discutan estrategias de resolución de problemas para solventar dudas.",
+    demo_node_2_step_4_action:
+      "Únete a foros de discusión. Explícale principios a tus colegas y discutan estrategias de resolución de problemas para solventar dudas.",
     demo_node_2_step_5_stage: "Revisión y Autoevaluación",
     demo_node_2_step_5_focus: "Solidifica conocimientos y evalúa tu dominio",
-    demo_node_2_step_5_action: "Revisa todo el material. Realiza las pruebas prácticas de MIT OpenCourseWare y concéntrate en las áreas con oportunidad de mejora.",
+    demo_node_2_step_5_action:
+      "Revisa todo el material. Realiza las pruebas prácticas de MIT OpenCourseWare y concéntrate en las áreas con oportunidad de mejora.",
 
     demo_node_3_title: "Introducción a la Ingeniería Aeroespacial",
-    demo_node_3_desc: "Visión general integral de la ingeniería aeroespacial incluyendo tecnología y materiales.",
+    demo_node_3_desc:
+      "Visión general integral de la ingeniería aeroespacial incluyendo tecnología y materiales.",
     demo_node_3_step_1_stage: "Construcción de Bases",
-    demo_node_3_step_1_focus: "Agarra los principios básicos de la dinámica de los fluidos.",
-    demo_node_3_step_1_action: "Lee los capítulos 1-3. Entiende las cuatro fuerzas e investiga la dinámica de los fluidos para su integración posterior.",
+    demo_node_3_step_1_focus:
+      "Agarra los principios básicos de la dinámica de los fluidos.",
+    demo_node_3_step_1_action:
+      "Lee los capítulos 1-3. Entiende las cuatro fuerzas e investiga la dinámica de los fluidos para su integración posterior.",
     demo_node_3_step_2_stage: "Inmersión en la Tecnología",
-    demo_node_3_step_2_focus: "Aprende sobre la tecnología aeroespacial y sus aplicaciones.",
-    demo_node_3_step_2_action: "Estudia los capítulos 4-6, enfocándote en cómo diferentes tecnologías aplican a misiones espaciales y diseños innovadores.",
+    demo_node_3_step_2_focus:
+      "Aprende sobre la tecnología aeroespacial y sus aplicaciones.",
+    demo_node_3_step_2_action:
+      "Estudia los capítulos 4-6, enfocándote en cómo diferentes tecnologías aplican a misiones espaciales y diseños innovadores.",
     demo_node_3_step_3_stage: "Materiales y Estructuras",
-    demo_node_3_step_3_focus: "Comprende los materiales y los fundamentos de la integridad estructural.",
-    demo_node_3_step_3_action: "Lee los capítulos 7-9. Crea un cuadro comparativo de diferentes materiales utilizados según su rendimiento, aerodinámica y estrés térmico.",
+    demo_node_3_step_3_focus:
+      "Comprende los materiales y los fundamentos de la integridad estructural.",
+    demo_node_3_step_3_action:
+      "Lee los capítulos 7-9. Crea un cuadro comparativo de diferentes materiales utilizados según su rendimiento, aerodinámica y estrés térmico.",
     demo_node_3_step_4_stage: "Aplicaciones y Sistemas",
-    demo_node_3_step_4_focus: "Explora varios sistemas y su integración a bordo.",
-    demo_node_3_step_4_action: "Bucea en los capítulos 10-12. Concéntrate en cómo diferentes sistemas trabajan en conjunto para formar la cabina y el ecosistema instrumental.",
+    demo_node_3_step_4_focus:
+      "Explora varios sistemas y su integración a bordo.",
+    demo_node_3_step_4_action:
+      "Bucea en los capítulos 10-12. Concéntrate en cómo diferentes sistemas trabajan en conjunto para formar la cabina y el ecosistema instrumental.",
     demo_node_3_step_5_stage: "Revisión y Síntesis",
-    demo_node_3_step_5_focus: "Consolida tu aprendizaje y conecta todos los eslabones ingenieriles de base.",
-    demo_node_3_step_5_action: "Revisa notas y elabora posibles preguntas de examen. Habla en discusiones de grupos para testear tu entendimiento práctico y teórico.",
+    demo_node_3_step_5_focus:
+      "Consolida tu aprendizaje y conecta todos los eslabones ingenieriles de base.",
+    demo_node_3_step_5_action:
+      "Revisa notas y elabora posibles preguntas de examen. Habla en discusiones de grupos para testear tu entendimiento práctico y teórico.",
 
     demo_node_4_title: "Fundamentos de la Aviónica",
-    demo_node_4_desc: "Explora la tecnología a bordo y los sistemas de posicionamiento.",
+    demo_node_4_desc:
+      "Explora la tecnología a bordo y los sistemas de posicionamiento.",
     demo_node_5_title: "Seguridad y Regulaciones de Aviación",
-    demo_node_5_desc: "Una descripción de los protocolos estándar en la aviación.",
+    demo_node_5_desc:
+      "Una descripción de los protocolos estándar en la aviación.",
     demo_node_6_title: "Propulsión Moderna de Aeronaves",
-    demo_node_6_desc: "Estudio minucioso de sistemas de empuje modernos desarrollados.",
+    demo_node_6_desc:
+      "Estudio minucioso de sistemas de empuje modernos desarrollados.",
     methodology_title: "Cómo Funciona CarthosAI",
-    methodology_subtitle: "Tu viaje desde la curiosidad hasta la maestría en cuatro pasos precisos.",
+    methodology_subtitle:
+      "Tu viaje desde la curiosidad hasta la maestría en cuatro pasos precisos.",
     methodology_step_1_title: "Selecciona el Dominio",
-    methodology_step_1_desc: "Elige el campo general de conocimiento que quieres explorar, desde Ciencias hasta Humanidades.",
+    methodology_step_1_desc:
+      "Elige el campo general de conocimiento que quieres explorar, desde Ciencias hasta Humanidades.",
     methodology_step_2_title: "Define la Profundidad",
-    methodology_step_2_desc: "Decide tu nivel de compromiso: vista general, aplicación profesional o maestría académica.",
+    methodology_step_2_desc:
+      "Decide tu nivel de compromiso: vista general, aplicación profesional o maestría académica.",
     methodology_step_3_title: "Enfoque Preciso",
-    methodology_step_3_desc: "Especifica exactamente qué quieres aprender. Nuestro motor genera un mapa personalizado basado en tu meta.",
+    methodology_step_3_desc:
+      "Especifica exactamente qué quieres aprender. Nuestro motor genera un mapa personalizado basado en tu meta.",
     methodology_step_4_title: "Sincroniza y Domina",
-    methodology_step_4_desc: "Navega a través de tu mapa de nodos personalizado y sigue tu progreso mientras sincronizas cada concepto.",
+    methodology_step_4_desc:
+      "Navega a través de tu mapa de nodos personalizado y sigue tu progreso mientras sincronizas cada concepto.",
     tracking_title: "Precisión en Cada Nodo",
-    tracking_subtitle: "Vive la emoción de ver cómo se expande tu maestría mientras sincronizas conceptos uno a uno.",
+    tracking_subtitle:
+      "Vive la emoción de ver cómo se expande tu maestría mientras sincronizas conceptos uno a uno.",
     tracking_feature_1_title: "Sincronización en Vivo",
-    tracking_feature_1_desc: "Completa módulos y observa cómo tu progreso se actualiza en tiempo real en todo tu mapa orbital.",
+    tracking_feature_1_desc:
+      "Completa módulos y observa cómo tu progreso se actualiza en tiempo real en todo tu mapa orbital.",
     tracking_feature_2_title: "Gráficos de Maestría Visuales",
-    tracking_feature_2_desc: "Analítica detallada de tu progreso por dominio. Mira exactamente cuánto has avanzado desde el primer día.",
+    tracking_feature_2_desc:
+      "Analítica detallada de tu progreso por dominio. Mira exactamente cuánto has avanzado desde el primer día.",
     tracking_feature_3_title: "Rutas Inteligentes",
-    tracking_feature_3_desc: "CarthosAI calcula automáticamente tu mejor 'siguiente misión' para mantener tu ritmo al máximo.",
+    tracking_feature_3_desc:
+      "CarthosAI calcula automáticamente tu mejor 'siguiente misión' para mantener tu ritmo al máximo.",
     atlas_title: "La Arquitectura de tu Mente",
-    atlas_subtitle: "Tus pasiones son las semillas. Nosotros cultivamos el ecosistema. Explora cómo CarthosAI conecta tus intereses con la maestría profesional.",
+    atlas_subtitle:
+      "Tus pasiones son las semillas. Nosotros cultivamos el ecosistema. Explora cómo CarthosAI conecta tus intereses con la maestría profesional.",
     atlas_feature_1_title: "Cartografía Conceptual",
-    atlas_feature_1_desc: "Cada nodo es generado meticulosamente para conectar tus hobbies actuales con conocimientos profesionales de alto valor.",
+    atlas_feature_1_desc:
+      "Cada nodo es generado meticulosamente para conectar tus hobbies actuales con conocimientos profesionales de alto valor.",
     atlas_feature_2_title: "Maestría No-Lineal",
-    atlas_feature_2_desc: "Olvida las listas. Navega por un grafo que entiende cómo fluyen los conceptos en el mundo real.",
+    atlas_feature_2_desc:
+      "Olvida las listas. Navega por un grafo que entiende cómo fluyen los conceptos en el mundo real.",
     atlas_feature_3_title: "Sincronización Total",
-    atlas_feature_3_desc: "A medida que aprendes, el mapa evoluciona. Mira cómo tu órbita mental se expande con cada nodo completado.",
+    atlas_feature_3_desc:
+      "A medida que aprendes, el mapa evoluciona. Mira cómo tu órbita mental se expande con cada nodo completado.",
     onboarding_cat_tech: "Tecnología",
     onboarding_cat_science: "Ciencias",
     onboarding_cat_humanities: "Humanidades",
@@ -494,6 +608,8 @@ export const translations = {
     onboarding_cat_health: "Salud",
     onboarding_cat_education: "Educación",
     onboarding_cat_culture: "Cultura",
+    onboarding_cat_literature: "Literatura",
+    onboarding_cat_history: "Historia",
     auth_welcome_back: "Bienvenido de nuevo",
     auth_initialize_link: "Inicializar Vínculo Neural",
     auth_access_orbit: "Accede a tu órbita para continuar la sincronización.",
@@ -520,7 +636,7 @@ export const translations = {
     landing_badge_synced_success: "Sincronizado correctamente al Atlas Neural",
     landing_atlas_bridge: "PUENTE CONCEPTUAL: ACTIVO",
     landing_cta_ready: "¿Listo para mapear tu futuro?",
-  }
+  },
 };
 
 export type Language = "en" | "es";

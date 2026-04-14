@@ -70,13 +70,13 @@ export const GenerationLoader = ({
             animate={{ rotate: 360 }}
             transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
             className="absolute inset-0 border-2 border-dashed border-primary/20 rounded-full"
-            style={{ borderColor: "rgba(0,195,237,0.15)" }}
+            style={{ borderColor: "var(--outline-variant)" }}
           />
           <motion.div
             animate={{ rotate: -360 }}
             transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
             className="absolute inset-[-12px] border border-primary/10 rounded-full"
-            style={{ borderColor: "rgba(0,195,237,0.1)" }}
+            style={{ borderColor: "var(--outline-variant)" }}
           />
 
           {/* Pulse Core */}

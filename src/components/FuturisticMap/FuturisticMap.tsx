@@ -49,6 +49,8 @@ interface FuturisticMapProps {
   onDragEnd?: (nodes: LearningNode[]) => void;
   language?: Language;
   disableZoom?: boolean;
+  tier?: string;
+  onMapCompleted?: () => void;
 }
 
 export const FuturisticMap = ({
@@ -59,6 +61,8 @@ export const FuturisticMap = ({
   onDragEnd,
   language = "es",
   disableZoom = false,
+  tier = "free",
+  onMapCompleted,
 }: FuturisticMapProps) => {
   const t = translations[language];
   const completedNodes = path.nodes.filter(
@@ -88,10 +92,29 @@ export const FuturisticMap = ({
   const isEditingRef = useRef(isEditingMode);
   const nodePositionsRef = useRef<Record<string, { x: number; y: number }>>({});
   const lastPathIdRef = useRef<string | null>(null);
+  const prevProgressRef = useRef(0);
 
   useEffect(() => {
     isEditingRef.current = isEditingMode;
   }, [isEditingMode]);
+
+  // Reset prev progress when switching maps
+  useEffect(() => {
+    prevProgressRef.current = overallProgress;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [path.id]);
+
+  // Trigger upgrade modal when free-tier map reaches 100%
+  useEffect(() => {
+    if (
+      prevProgressRef.current < 100 &&
+      overallProgress === 100 &&
+      tier === "free"
+    ) {
+      onMapCompleted?.();
+    }
+    prevProgressRef.current = overallProgress;
+  }, [overallProgress, tier, onMapCompleted]);
 
   const handleSaveLayout = () => {
     localStorage.setItem(
@@ -209,7 +232,7 @@ export const FuturisticMap = ({
     const maxLevel = Math.max(1, ...Array.from(levelsMap.values()));
 
     // Read saved positions for this path and mode
-    const savedStr = localStorage.getItem(`aetheris_map_${path.id}_${mapMode}`);
+    const savedStr = localStorage.getItem(`carthos_map_${path.id}_${mapMode}`);
     if (savedStr) {
       try {
         nodePositionsRef.current = JSON.parse(savedStr);
@@ -217,6 +240,16 @@ export const FuturisticMap = ({
     } else {
       nodePositionsRef.current = {};
     }
+
+    // Pre-compute which nodes share the same level (for vertical staggering)
+    const nodesAtLevel = new Map<number, string[]>();
+    nodes.forEach((n) => {
+      if (!nodePositionsRef.current[n.id]) {
+        const lvl = levelsMap.get(n.id) || 0;
+        if (!nodesAtLevel.has(lvl)) nodesAtLevel.set(lvl, []);
+        nodesAtLevel.get(lvl)!.push(n.id);
+      }
+    });
 
     // Set up target coordinates for every node
     nodes.forEach((d, i) => {
@@ -234,17 +267,25 @@ export const FuturisticMap = ({
         const lvl = levelsMap.get(d.id) || 0;
         const usableWidth = Math.max(300, width - 200);
         d.targetX = (width - usableWidth) / 2 + (lvl * usableWidth) / maxLevel;
-        d.targetY = height / 2;
+        const levelNodes = nodesAtLevel.get(lvl) || [d.id];
+        const nodeIdx = levelNodes.indexOf(d.id);
+        const levelCount = levelNodes.length;
+        const vertSpacing = 240;
+        d.targetY = height / 2 + (nodeIdx - (levelCount - 1) / 2) * vertSpacing;
       }
 
-      // Initialize starting coordinates smoothly
-      // If we are editing or have real coords from parent, use them as prioritized targets
-      const hasRealCoords =
-        (d as any).x !== undefined && (d as any).y !== undefined;
+      // Restore DB-persisted positions (from a previous drag+save),
+      // but only if they are real coordinates (not the 0,0 default of a new node).
+      const dbX = (d as any).x;
+      const dbY = (d as any).y;
+      const hasRealDBCoords =
+        dbX !== undefined && dbY !== undefined &&
+        !isNaN(dbX) && !isNaN(dbY) &&
+        (dbX !== 0 || dbY !== 0);
 
-      if (hasRealCoords && !nodePositionsRef.current[d.id]) {
-        d.targetX = (d as any).x;
-        d.targetY = (d as any).y;
+      if (hasRealDBCoords && !nodePositionsRef.current[d.id]) {
+        d.targetX = dbX;
+        d.targetY = dbY;
       }
 
       d.x = d.targetX;
@@ -747,17 +788,35 @@ export const FuturisticMap = ({
       linkElements.style("opacity", 1);
     }
 
+    // Fit view to all node targets
+    const xMin = d3.min(nodes, (d) => d.targetX!) ?? 0;
+    const xMax = d3.max(nodes, (d) => d.targetX!) ?? width;
+    const yMin = d3.min(nodes, (d) => d.targetY!) ?? 0;
+    const yMax = d3.max(nodes, (d) => d.targetY!) ?? height;
+    const bw = Math.max(xMax - xMin, 1);
+    const bh = Math.max(yMax - yMin, 1);
+    const fitCx = (xMin + xMax) / 2;
+    const fitCy = (yMin + yMax) / 2;
+    const fitScale = Math.min(1.0, 0.85 / Math.max(bw / width, bh / height));
+    const fitTx = width / 2 - fitScale * fitCx;
+    const fitTy = height / 2 - fitScale * fitCy;
+    const initialTransform = d3.zoomIdentity.translate(fitTx, fitTy).scale(fitScale);
+    currentTransform = initialTransform;
+    transformRef.current = initialTransform;
+    g.attr("transform", initialTransform as any);
+
     // Zoom behavior
     if (!disableZoom) {
       const zoom = d3
         .zoom<SVGSVGElement, unknown>()
-        .scaleExtent([0.5, 2])
+        .scaleExtent([0.35, 2])
         .on("zoom", (event) => {
           currentTransform = event.transform;
           transformRef.current = event.transform;
           g.attr("transform", event.transform);
         });
       svg.call(zoom);
+      svg.call(zoom.transform, initialTransform as any);
     }
 
     return () => {

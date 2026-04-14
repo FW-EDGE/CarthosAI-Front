@@ -1,13 +1,13 @@
-import { LandingNav } from "./LandingNav/LandingNav";
-import { LandingFooter } from "./layout/LandingFooter";
-import { Hero } from "../sections/landing/Hero/Hero";
-import { Methodology } from "../sections/landing/Methodology/Methodology";
-import { Tracking } from "../sections/landing/Tracking/Tracking";
-import { Atlas } from "../sections/landing/Atlas/Atlas";
-import { CTA } from "../sections/landing/CTA/CTA";
-import { Pricing } from "../sections/landing/Pricing/Pricing";
-import { translations, Language } from "../constants/translations";
-import { getDemoPath } from "../utils/landingData";
+import { LandingNav } from "../../components/LandingNav/LandingNav";
+import { LandingFooter } from "../../components/layout/LandingFooter";
+import { Hero } from "./Hero/Hero";
+import { Methodology } from "./Methodology/Methodology";
+import { Tracking } from "./Tracking/Tracking";
+import { Atlas } from "./Atlas/Atlas";
+import { CTA } from "./CTA/CTA";
+import { Pricing } from "./Pricing/Pricing";
+import { translations, Language } from "../../constants/translations";
+import { getDemoPath } from "../../utils/landingData";
 
 export const Landing = ({
   onStart,
