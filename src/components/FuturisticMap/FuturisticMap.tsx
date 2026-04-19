@@ -560,9 +560,7 @@ export const FuturisticMap = ({
       linkElements.attr("d", (d) => {
         const s = d.source;
         const t = d.target;
-        const mx = (s.x! + t.x!) / 2;
-        const my = (s.y! + t.y!) / 2 - 15;
-        return `M${s.x},${s.y} Q${mx},${my} ${t.x},${t.y}`;
+        return `M${s.x},${s.y} L${t.x},${t.y}`;
       });
     };
 
@@ -653,16 +651,14 @@ export const FuturisticMap = ({
 
         const s = p.source;
         const t = p.target;
-        const mx = (s.x! + t.x!) / 2;
-        const my = (s.y! + t.y!) / 2 - 15;
 
-        const getBezier = (u: number) => ({
-          x: (1 - u) * (1 - u) * s.x! + 2 * (1 - u) * u * mx + u * u * t.x!,
-          y: (1 - u) * (1 - u) * s.y! + 2 * (1 - u) * u * my + u * u * t.y!,
+        const getLinear = (u: number) => ({
+          x: s.x! + u * (t.x! - s.x!),
+          y: s.y! + u * (t.y! - s.y!),
         });
 
-        const pos = getBezier(p.t);
-        const prev = getBezier(Math.max(0, p.t - 0.06));
+        const pos = getLinear(p.t);
+        const prev = getLinear(Math.max(0, p.t - 0.06));
 
         // ── Per-type visual config ──────────────────────────────
         let r: string, g_: string, b: string;
